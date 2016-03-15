@@ -23,7 +23,7 @@ def register_modules(app):
         module_router = "%s.router" % module["name"]
         register = False
         try:
-            router = __import__(module_router, globals(), locals(), [], -1)
+            router = __import__(module_router, globals(), locals(), [], 0)
         except ImportError:
             print(module["name"] + " can not be loaded")
         else:
@@ -53,11 +53,11 @@ def load_module_dependencies(app, module):
     models = "%s.models" % name
 
     try:
-        models = __import__(models, globals(), locals(), [], -1)
+        models = __import__(models, globals(), locals(), [], 0)
     except ImportError as ex:
-        if re.match(r'No module named', ex.message):
-            print('[MODEL] Unable to load the model for %s: %s' % (models, ex.message))
+        if re.match(r'No module named', ex.msg):
+            print('[MODEL] Unable to load the model for %s: %s' % (models, ex.msg))
         else:
-            print('[MODEL] Other(%s): %s' % (models, ex.message))
+            print('[MODEL] Other(%s): %s' % (models, ex.msg))
         return False
     return True

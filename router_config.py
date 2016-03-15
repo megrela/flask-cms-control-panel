@@ -1,10 +1,12 @@
 MODULES = [
     {
-        "name": "hallo",
-        "url": "/hallo"
+        "name": "hello",
+        "url": "/hello",
+        "models": False
     },
     {
         "name": "world",
-        "url": "/world"
+        "url": "/world",
+        "models": False
     },
 ]
