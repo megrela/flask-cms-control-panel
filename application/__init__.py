@@ -39,7 +39,11 @@ def register_modules(app):
             load_module_dependencies(app, module)
 
         if register:
-            app.register_module(router.module, url_prefix=url)
+            app.register_module(
+                router.module,
+                url_prefix=url,
+                static_folder="static"
+            )
 
 
 def load_module_dependencies(app, module):
