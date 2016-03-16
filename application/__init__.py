@@ -3,12 +3,21 @@ import os, re, sys
 from flask import Flask
 from router_config import MODULES
 
+app = Flask(__name__, static_path='/static')
 
-def create_app(name=__name__):
-    app = Flask(name, static_path='/static')
+
+def start(name=__name__):
     load_config(app)
     register_modules(app)
-    return app
+
+    if app.config["DEBUG"]:
+        app.debug = True
+
+    app.run(
+        host=app.config["HOST"],
+        port=app.config["PORT"]
+    )
+
 
 
 def load_config(app):
@@ -65,3 +74,4 @@ def load_module_dependencies(app, module):
             print('[MODEL] Other(%s): %s' % (models, ex.msg))
         return False
     return True
+

@@ -8,3 +8,8 @@ SECRET_KEY = "123"
 
 HOST = "127.0.0.1"
 PORT = 5000
+
+MONGO_DBNAME = "test"
+MONGO_HOST = "localhost"
+MONGO_PORT = 27017
+
