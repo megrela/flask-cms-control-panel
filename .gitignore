@@ -63,3 +63,6 @@ target/
 
 #idea
 /.idea
+
+#bower
+/application/static/bower_components

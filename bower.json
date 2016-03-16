@@ -1,0 +1,11 @@
+{
+  "name": "python-flask-skeleton",
+  "homepage": "https://github.com/megrela/python-flask-skeleton",
+  "authors": [
+    "megrela"
+  ],
+  "description": "skeleton project for flask applications",
+  "main": "run.py",
+  "moduleType": [],
+  "license": "MIT"
+}
