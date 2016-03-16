@@ -1,8 +1,23 @@
 {% extends "layouts/base.html" %}
+{% block css %}
+    {{ super() }}
+    <link rel="stylesheet" href="/static/css/login.css">
+{% endblock %}
+
 {% block content %}
-    <form>
-        <input type="text" name="username">
-        <input type="password" name="password">
-        <input type="submit" value="submit">
-    </form>
+    <div id="login-form-container" class="container">
+        <form class="container" id="login-form">
+            <div class="form-group">
+                <label for="login-username">Username</label>
+                <input type="text" class="form-control" id="login-username" placeholder="Username">
+            </div>
+            <div>
+                <label for="login-password">Password</label>
+                <input type="password" class="password form-control" id="login-password" placeholder="Password">
+            </div>
+            <div class="btn-group">
+                <button type="submit" class="btn btn-success">Sign in</button>
+            </div>
+        </form>
+    </div>
 {% endblock %}
