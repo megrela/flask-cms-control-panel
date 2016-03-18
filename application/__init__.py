@@ -12,6 +12,8 @@ def start(name=__name__):
 
     if app.config["DEBUG"]:
         app.debug = True
+    if app.config["SECRET_KEY"]:
+        app.secret_key = app.config["SECRET_KEY"]
 
     app.run(
         host=app.config["HOST"],
@@ -74,4 +76,3 @@ def load_module_dependencies(app, module):
             print('[MODEL] Other(%s): %s' % (models, ex.msg))
         return False
     return True
-
