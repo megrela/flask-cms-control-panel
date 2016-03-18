@@ -1,4 +1,9 @@
 /**
  * Created by gime on 3/16/2016.
  */
-console.log("js loaded");
+$(document).ready(function () {
+    $('.invalid-input').focus(function () {
+        $(this).removeClass("invalid-input");
+
+    });
+});
