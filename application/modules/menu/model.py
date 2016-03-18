@@ -1,4 +1,5 @@
 class MenuItemModel:
+    module_id = "MENU_ITEM"
     name = ""
     url = ""
 
@@ -13,4 +14,3 @@ class MenuItemModel:
             MenuItemModel("name2", "/name2"),
             MenuItemModel("name3", "/name3")
         ]
-

@@ -15,7 +15,12 @@
     </head>
     <body>
         <div id="header">
-            {% block header %} {% include "layouts/header.html" %} {% endblock %}
+
+            {% block header %}
+                {% if dependencies is defined and "header" in dependencies %}
+                    {% include "layouts/header.html" %}
+                {% endif %}
+            {% endblock %}
         </div>
 
         <div id="content">
