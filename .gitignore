@@ -67,3 +67,5 @@ target/
 #bower
 /application/static/bower_components
 
+#db
+/db
