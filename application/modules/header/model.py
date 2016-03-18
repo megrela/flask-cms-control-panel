@@ -1,4 +1,5 @@
 class HeaderModel:
+    name = "HEADER"
     app_name = ""
     menu_items = []
 
