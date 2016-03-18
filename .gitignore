@@ -69,3 +69,5 @@ target/
 
 #db
 /db
+
+/application/static/css/.sass-cache
