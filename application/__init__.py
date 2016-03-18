@@ -17,9 +17,9 @@ def start(name=__name__):
 
     app.run(
         host=app.config["HOST"],
-        port=app.config["PORT"]
+        port=app.config["PORT"],
+        debug=True
     )
-
 
 
 def load_config(app):
