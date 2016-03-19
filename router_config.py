@@ -15,18 +15,8 @@ MODULES = [
         "models": False
     },
     {
-        "name": "content-groups",
-        "url": "/content-groups",
-        "models": False
-    },
-    {
-        "name": "text-components",
-        "url": "/text-components",
-        "models": False
-    },
-    {
-        "name": "image-components",
-        "url": "/image-components",
+        "name": "content_groups",
+        "url": "/content_groups",
         "models": False
     }
 ]

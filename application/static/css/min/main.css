@@ -1,5 +1,10 @@
-body { background-color: #f7f7f7; }
+/*color section*/
+/*border section*/
+/*padding & margin*/
+body { background-color: #f7f7f7; padding: 0; }
 
-.invalid-input { border: 1px solid #9C1A1C !important; }
+.invalid-input { border: 1px solid #D62C1A; }
+
+#content { width: 100%; padding: 0 10px; }
 
 /*# sourceMappingURL=main.css.map */

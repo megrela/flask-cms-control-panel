@@ -1,3 +1,8 @@
-#header { height: 50px; }
+/*color section*/
+/*border section*/
+/*padding & margin*/
+#header .navbar { background-color: #2C3E50; }
+#header .navbar .container a { color: #f7f7f7; }
+#header .navbar .container a:hover { color: #128F76; background-color: transparent; }
 
 /*# sourceMappingURL=header.css.map */

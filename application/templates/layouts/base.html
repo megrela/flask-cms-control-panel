@@ -5,6 +5,7 @@
         </title>
         {% block css %}
             <link rel="stylesheet" href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css">
+            <link rel="stylesheet" href="/static/css/min/settings.css">
             <link rel="stylesheet" href="/static/css/min/main.css" />
         {% endblock %}
         {% block script %}
@@ -15,7 +16,6 @@
     </head>
     <body>
         <div id="header">
-
             {% block header %}
                 {% if dependencies is defined and "header" in dependencies %}
                     {% include "layouts/header.html" %}

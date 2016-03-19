@@ -1,7 +1,14 @@
+@import "settings";
 body {
-  background-color: #f7f7f7;
+  background-color: $white;
+  padding: 0;
 }
 
 .invalid-input {
-  border: 1px solid #9C1A1C !important;
+  border: $invalid-border;
+}
+
+#content {
+  width: 100%;
+  padding: $content-padding;
 }

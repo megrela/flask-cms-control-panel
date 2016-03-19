@@ -1,3 +1,10 @@
+@import "settings";
 #header {
-    height: 50px;
+  .navbar {
+    background-color: $dark-blue;
+    .container {
+      a { color: $white; }
+      a:hover { color: $light-green; background-color: transparent; }
+    }
+  }
 }

@@ -11,18 +11,23 @@
 {% endblock %}
 
 {% block header %}
-    <nav class="navbar navbar-static-top navbar-inverse">
+    <nav class="navbar navbar-static-top">
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand" href="">
                     {{ dependencies["header"].app_name  }}
                 </a>
             </div>
-            <div class="navbar-collapse collapse">
+            <div class="navbar-collapse navbar-left">
                 <ul class="nav navbar-nav">
                     {% for item in dependencies["header"].menu_items %}
                         <li><a href="{{ item.url }}">{{ item.name }}</a></li>
                     {% endfor %}
+                </ul>
+            </div>
+            <div class="navbar-collapse navbar-right">
+                <ul class="nav navbar-nav">
+
                 </ul>
             </div>
         </div>

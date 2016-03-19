@@ -1,5 +1,5 @@
 class HeaderModel:
-    module_id = "HEADER"
+    module_id = "HEADER_MODULE"
     app_name = ""
     menu_items = []
 
