@@ -1,10 +1,20 @@
 /*color section*/
 /*border section*/
 /*padding & margin*/
-body { background-color: #f7f7f7; padding: 0; }
+/*size*/
+body { background-color: #f7f7f7; padding: 0; font-size: 14px; }
 
-.invalid-input { border: 1px solid #D62C1A; }
+.invalid-input { border: 1px solid #CE4844; }
 
-#content { width: 100%; padding: 0 10px; }
+#content { width: 100%; padding: 0 10px; font-size: 14px; }
+#content .table { font-size: inherit; }
+
+.icon-container { width: 10px; text-align: center; }
+.icon-container .glyphicon-remove { color: #CE4844; }
+.icon-container .glyphicon-edit { color: #C87F0A; }
+.icon-container:hover { cursor: pointer; }
+
+.btn-success { color: #f7f7f7; background-color: #128F76; border-color: #128F76; }
+.btn-success:hover, .btn-success:active, .btn-success:focus { background-color: #0F7864 !important; border-color: #0F7864 !important; }
 
 /*# sourceMappingURL=main.css.map */

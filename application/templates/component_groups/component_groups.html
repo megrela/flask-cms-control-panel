@@ -1,0 +1,51 @@
+{% extends "layouts/base.html" %}
+
+{% block css %}
+    {{ super() }}
+    <link rel="stylesheet" href="/static/css/min/component_groups.css">
+{% endblock %}
+
+{% block script %}
+    {{ super() }}
+    <script src="/static/js/component-groups.js"> </script>
+{% endblock %}
+
+{% block content %}
+    <div class="container" id="component-groups">
+        <h3> Component Groups </h3>
+        <div class="clearfix">
+            <div class="table-container container pull-left">
+                <div class="action-bar">
+                    <a href="#" id="add-new-component-group" class="btn btn-success btn-sm">Add New</a>
+                </div>
+                <table class="table table-bordered table-striped table-hover" id="component-list">
+                    <tr id="new-component-page" class="success">
+                        <td><input type="text" class="form-control input-sm" placeholder="name"></td>
+                        <td><input type="text" class="form-control input-sm" placeholder="id"></td>
+                        <td colspan="2"><button class="btn btn-sm btn-success">Save</button></td>
+                    </tr>
+                    <tr>
+                        <td>Component 1 name</td>
+                        <td>Component 1 id</td>
+                        <td class="icon-container">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </td>
+                        <td class="icon-container">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Component 2 name</td>
+                        <td>Component 2 id</td>
+                        <td class="icon-container">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </td>
+                        <td class="icon-container">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

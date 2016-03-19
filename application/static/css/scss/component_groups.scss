@@ -1,0 +1,23 @@
+@import "settings";
+#content {
+  #component-groups {
+    .table-container {
+      width: 600px;
+      margin: $margin-to-header;
+      .action-bar{
+        margin: $action-bar-margin;
+      }
+      .table {
+        td{
+          padding: $table-td-padding
+        }
+      }
+    }
+
+    #new-component-page {
+      display: none;
+      height: 25px;
+      transition: all 10s ease;
+    }
+  }
+}

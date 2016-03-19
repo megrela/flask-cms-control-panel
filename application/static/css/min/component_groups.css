@@ -1,0 +1,10 @@
+/*color section*/
+/*border section*/
+/*padding & margin*/
+/*size*/
+#content #component-groups .table-container { width: 600px; margin: 20px 0 0 0; }
+#content #component-groups .table-container .action-bar { margin: 0 0 10px 0; }
+#content #component-groups .table-container .table td { padding: 5px; }
+#content #component-groups #new-component-page { display: none; height: 25px; transition: all 10s ease; }
+
+/*# sourceMappingURL=component_groups.css.map */

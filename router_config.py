@@ -15,8 +15,8 @@ MODULES = [
         "models": False
     },
     {
-        "name": "content_groups",
-        "url": "/content_groups",
+        "name": "component_groups",
+        "url": "/component_groups",
         "models": False
     }
 ]

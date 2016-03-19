@@ -2,6 +2,7 @@
 body {
   background-color: $white;
   padding: 0;
+  font-size: $body-font-size;
 }
 
 .invalid-input {
@@ -11,4 +12,30 @@ body {
 #content {
   width: 100%;
   padding: $content-padding;
+  font-size: $body-font-size;
+  .table {
+    font-size: inherit;
+  }
+}
+
+.icon-container {
+  width: 10px;
+  text-align: center;
+  .glyphicon-remove{ color: $red; }
+  .glyphicon-edit { color: $yellow }
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.btn-success {
+  color: $white;
+  background-color: $light-green;
+  border-color: $light-green;
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: $dark-green !important;
+    border-color: $dark-green !important;
+  }
 }
