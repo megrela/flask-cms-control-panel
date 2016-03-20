@@ -4,6 +4,8 @@ from application.modules import header
 from application.modules.header.model import HeaderModel
 from application.modules.menu.model import MenuItemModel
 
+from application.mongo_db import mongo
+
 
 def setup_header_menu():
     menu = MenuItemModel.get_all_items_for_module(
@@ -20,6 +22,7 @@ def setup_header():
 
 def setup():
     dependencies = {
-        "header": setup_header()
+        "header": setup_header(),
+        "component_groups": list(mongo.db.component_groups.find())
     }
     return dependencies

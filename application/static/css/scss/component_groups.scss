@@ -9,7 +9,15 @@
       }
       .table {
         td{
-          padding: $table-td-padding
+          padding: $table-td-padding;
+          &.button-within {
+            text-align: center;
+          }
+        }
+
+        .edit-mode,
+        .delete-mode {
+          display: none;
         }
       }
     }
@@ -17,7 +25,6 @@
     #new-component-page {
       display: none;
       height: 25px;
-      transition: all 10s ease;
     }
   }
 }

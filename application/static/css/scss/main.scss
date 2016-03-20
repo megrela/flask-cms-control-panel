@@ -19,10 +19,11 @@ body {
 }
 
 .icon-container {
-  width: 10px;
+  width: 40px;
   text-align: center;
+  vertical-align: middle;
   .glyphicon-remove{ color: $red; }
-  .glyphicon-edit { color: $yellow }
+  .glyphicon-edit { color: $light-yellow; }
   &:hover {
     cursor: pointer;
   }
@@ -38,4 +39,22 @@ body {
     background-color: $dark-green !important;
     border-color: $dark-green !important;
   }
+}
+
+.btn-warning {
+  color: $white;
+  background-color: $light-yellow;
+  border-color: $light-yellow;
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: $dark-yellow !important;
+    border-color: $dark-yellow !important;
+  }
+}
+
+.input-sm,
+.btn-sm {
+  height: 25px;
+  line-height: 1;
 }

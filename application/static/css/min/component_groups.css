@@ -5,6 +5,8 @@
 #content #component-groups .table-container { width: 600px; margin: 20px 0 0 0; }
 #content #component-groups .table-container .action-bar { margin: 0 0 10px 0; }
 #content #component-groups .table-container .table td { padding: 5px; }
-#content #component-groups #new-component-page { display: none; height: 25px; transition: all 10s ease; }
+#content #component-groups .table-container .table td.button-within { text-align: center; }
+#content #component-groups .table-container .table .edit-mode, #content #component-groups .table-container .table .delete-mode { display: none; }
+#content #component-groups #new-component-page { display: none; height: 25px; }
 
 /*# sourceMappingURL=component_groups.css.map */

@@ -16,7 +16,7 @@ $(document).ready(function () {
             module.listen();
         },
 
-        togglePage: function () {
+        toggleNewPage: function () {
             var me = this;
             if (me.state == "LIST") {
                 me.addNewBtn
@@ -38,8 +38,37 @@ $(document).ready(function () {
             var me = this;
 
             me.addNewBtn.click(function () {
-                me.togglePage();
+                me.toggleNewPage();
             });
+
+            $('td.edit-icon').click(function () {
+                $(this).parent().hide();
+                $(this).parent().next(".edit-mode").show();
+            });
+
+            $('.update-comp-group').click(function () {
+                $(this).parent().parent().hide();
+                $(this).parent().parent().prev(".view-mode").show();
+            });
+
+            $('td.delete-icon').click(function () {
+                $(this).parent().children(".icon-container").each(function () {
+                    $(this).hide();
+                });
+
+                $(this).parent().children(".delete-mode").first().show();
+            });
+
+            $('.delete-component-group').click(function () {
+                $(this).parent().parent().children(".icon-container").each(function () {
+                    $(this).show();
+                });
+
+                $(this).parent().hide();
+            });
+
+
+
 
             me.saveComponentBtn.click(function () {
                 //ajax call to server
