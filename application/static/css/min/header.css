@@ -3,7 +3,13 @@
 /*padding & margin*/
 /*size*/
 #header .navbar { background-color: #2C3E50; }
-#header .navbar .container a { color: #f7f7f7; }
-#header .navbar .container a:hover { color: #128F76; background-color: transparent; }
+#header .navbar .navbar-brand { color: #f7f7f7; }
+#header .navbar .navbar-brand:hover, #header .navbar .navbar-brand:focus { color: #128F76; background-color: transparent; }
+#header .navbar .nav.navbar-nav li.active a { color: #128F76; }
+#header .navbar .nav.navbar-nav li.dropdown.open .dropdown-toggle { color: #128F76; background-color: transparent; }
+#header .navbar .nav.navbar-nav li.dropdown.open .dropdown-toggle:hover, #header .navbar .nav.navbar-nav li.dropdown.open .dropdown-toggle:focus { color: #128F76; background-color: transparent; }
+#header .navbar .nav.navbar-nav li.dropdown.open .dropdown-menu { background-color: #2C3E50; border-bottom-left-radius: 4px; border-bottom-right-radius: 4px; border-top: none; }
+#header .navbar .nav.navbar-nav li a { color: #f7f7f7; }
+#header .navbar .nav.navbar-nav li a:hover, #header .navbar .nav.navbar-nav li a:focus { color: #128F76; background-color: transparent; }
 
 /*# sourceMappingURL=header.css.map */

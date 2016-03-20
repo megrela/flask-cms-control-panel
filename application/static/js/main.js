@@ -5,6 +5,8 @@ $(document).ready(function () {
     $('.invalid-input').focus(function () {
         $(this).removeClass("invalid-input");
     });
+
+    $(".dropdown-toggle").dropdown();
 });
 
 
