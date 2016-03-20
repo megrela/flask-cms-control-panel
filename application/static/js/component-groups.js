@@ -7,6 +7,8 @@ $(document).ready(function () {
         init: function () {
             var me = this;
             me.state = "LIST";
+            me.newName = $('#new-component-group-name');
+            me.newGid = $('#new-component-group-id');
             me.addNewBtn = $('#add-new-component-group');
             me.componentsTable = $('#component-list');
             me.newComponentPage = $('#new-component-page');
@@ -43,23 +45,34 @@ $(document).ready(function () {
             });
 
             me.newComponentGroupAddBtn.click(function () {
+
                 me.addNewItem(
-                    $('#new-component-group-name').val(),
-                    $('#new-component-group-id').val()
+                    me.newName.val(),
+                    me.newGid.val()
                 );
+                me.newName.val("");
+                me.newGid.val("");
             });
 
-            $('td.edit-icon').click(function () {
+            $(document).on("click",'td.edit-icon', function () {
                 $(this).parent().hide();
                 $(this).parent().next(".edit-mode").show();
             });
 
-            $('.update-comp-group').click(function () {
+            $(document).on("click",'.update-comp-group', function () {
+                var name = $($(this).parent().parent().find(".name")[0]).val();
+                var groupId = $($(this).parent().parent().find(".group-id")[0]).val();
+
+                $($(this).parent().parent().prev(".view-mode").find(".name")[0]).text(name);
+                $($(this).parent().parent().prev(".view-mode").find(".group-id")[0]).text(groupId);
+
                 $(this).parent().parent().hide();
                 $(this).parent().parent().prev(".view-mode").show();
+
+                me.updateItem( $(this).attr("data-id"), name, groupId );
             });
 
-            $('td.delete-icon').click(function () {
+            $(document).on("click", 'td.delete-icon', function () {
                 $(this).parent().children(".icon-container").each(function () {
                     $(this).hide();
                 });
@@ -67,12 +80,10 @@ $(document).ready(function () {
                 $(this).parent().children(".delete-mode").first().show();
             });
 
-            $('.delete-component-group').click(function () {
-                $(this).parent().parent().children(".icon-container").each(function () {
-                    $(this).show();
-                });
-
-                $(this).parent().hide();
+            $(document).on("click", '.delete-component-group', function () {
+                $(this).parent().parent().next().detach();
+                $(this).parent().parent().detach();
+                me.removeItem($(this).attr("data-id"));
             });
         },
         
@@ -86,6 +97,7 @@ $(document).ready(function () {
                             $(this).html()
                                 .replaceAll("#name#", name)
                                 .replaceAll("#group_id#", id)
+                                .replaceAll("#id#", resp.id)
                         );
                         me.componentsTable.append($(this));
                     });
@@ -96,7 +108,34 @@ $(document).ready(function () {
                 }
             };
             app.ajax("add", {name: name, group_id: id }, callback);
+        },
+
+        removeItem: function (id) {
+            var me = this;
+
+            var callback = {
+                success: function(resp) {},
+                fail: function (resp) {
+                    console.log("failed");
+                }
+            };
+
+            app.ajax("remove", {id: id}, callback);
+        },
+
+        updateItem: function(id, name, groupId) {
+            var callback = {
+                success: function (resp) {
+
+                },
+                fail: function(resp) {
+                    console.log("failed");
+                }
+            };
+            app.ajax("update", {id: id, name: name, group_id: groupId}, callback);
         }
+
+
     };
 
     module.init();

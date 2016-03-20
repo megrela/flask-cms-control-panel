@@ -10,7 +10,7 @@ var app = {
             url: url,
             data: data,
             success: function (resp) {
-                callback.success(resp);
+                callback.success(JSON.parse(resp));
             },
             error: function(resp) {
                 callback.fail(resp);

@@ -1,11 +1,11 @@
 from flask import render_template, request, session, redirect, url_for
 from application.mongo_db import mongo
-from application.constants import constants
 
 from . import module
 from .setup import setup
 
 import json
+from bson.objectid import ObjectId
 
 
 @module.route('/', methods=("GET", "POST"))
@@ -23,12 +23,12 @@ def add():
     return json.dumps({"id": str(res.inserted_id)})
 
 
-@module.route('/delete', methods=("POST",))
+@module.route('/remove', methods=("POST",))
 def remove():
     mongo.db.component_groups.remove({
-        "_id": {"$oid": request.form.get("id")}
+        "_id": ObjectId(request.form.get("id"))
     })
-    return ""
+    return json.dumps({})
 
 
 @module.route('/update', methods=("POST",))
@@ -38,7 +38,7 @@ def update():
     oid = request.form.get("id")
     mongo.db.component_groups.update(
         {
-            "_id": {"$oid": oid}
+            "_id": ObjectId(oid)
         },
         {
             "$set": {
@@ -47,4 +47,4 @@ def update():
             }
         }
     )
-    return ""
+    return json.dumps({})
