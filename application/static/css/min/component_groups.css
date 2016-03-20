@@ -3,6 +3,7 @@
 /*padding & margin*/
 /*size*/
 #content #component-groups .table-container { width: 600px; margin: 20px 0 0 0; }
+#content #component-groups .table-container #component-group-template { display: none; }
 #content #component-groups .table-container .action-bar { margin: 0 0 10px 0; }
 #content #component-groups .table-container .table td { padding: 5px; }
 #content #component-groups .table-container .table td.button-within { text-align: center; }

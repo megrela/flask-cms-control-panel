@@ -26,3 +26,4 @@ def setup():
         "component_groups": list(mongo.db.component_groups.find())
     }
     return dependencies
+

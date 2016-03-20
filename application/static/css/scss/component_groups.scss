@@ -4,9 +4,15 @@
     .table-container {
       width: 600px;
       margin: $margin-to-header;
+
+      #component-group-template {
+        display: none;
+      }
+
       .action-bar{
         margin: $action-bar-margin;
       }
+
       .table {
         td{
           padding: $table-td-padding;
@@ -20,6 +26,8 @@
           display: none;
         }
       }
+
+
     }
 
     #new-component-page {
