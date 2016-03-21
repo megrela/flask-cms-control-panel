@@ -20,10 +20,15 @@ def setup_header():
     return header_module
 
 
-def setup():
+def setup(component_type):
     dependencies = {
         "header": setup_header(),
-        "component_groups": list(mongo.db.component_groups.find())
+        "components": list(
+            mongo.db.component_groups.find({"type": component_type})
+        ),
+        "component_groups": list(
+            mongo.db.component_groups.find()
+        )
     }
     return dependencies
 
