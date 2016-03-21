@@ -12,7 +12,7 @@
     }
 
     .nav.navbar-nav li {
-      &.active a{
+      &.active > a{
         color: $light-green;
       }
 

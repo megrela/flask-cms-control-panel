@@ -21,7 +21,7 @@ def index(component_type):
 
 
 @module.route("/<component_type>/filter", methods=("POST",))
-def index(component_type):
+def filter_components(component_type):
     if validation.validate_type(component_type):
         result = list(
             mongo.db.components.find({
@@ -34,7 +34,7 @@ def index(component_type):
 
 
 @module.route("/<component_type>/add", methods=("POST",))
-def delete(component_type):
+def add(component_type):
     if validation.validate_type(component_type):
         result = list(
             mongo.db.components.find({
@@ -47,7 +47,7 @@ def delete(component_type):
 
 
 @module.route("/<component_type>/remove", methods=("POST",))
-def delete(component_type):
+def remove(component_type):
     if validation.validate_type(component_type):
         mongo.db.components.remove({
             "_id": ObjectId(request.form.get("id"))
@@ -58,7 +58,7 @@ def delete(component_type):
 
 
 @module.route("/<component_type>/update", methods=("POST",))
-def delete(component_type):
+def update(component_type):
     if validation.validate_type(component_type):
         result = list(
             mongo.db.components.find({
