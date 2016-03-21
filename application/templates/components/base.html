@@ -9,5 +9,19 @@
 {% endblock %}
 
 {% block content %}
-    {{ super() }}
+    <div class="container" id="component-group-filters">
+        <h5>Component Group</h5>
+        <div class="clearfix">
+            <form action="" style="width: 200px;" class="pull-left">
+                <div class="form-group">
+                    <select name="component-group-filter" data-query-param="group_id" class="form-control input-sm component-list-filter" id="component-group-filter">
+                        <option value="" selected>all</option>
+                        <option value="login">Login</option>
+                        <option value="common">Common</option>
+                    </select>
+                </div>
+            </form>
+            <h4 class="pull-left" style="margin-top: 5px; margin-left: 10px;"> component prefix: <strong>login.</strong> </h4>
+        </div>
+    </div>
 {% endblock %}

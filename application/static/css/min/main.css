@@ -2,7 +2,7 @@
 /*border section*/
 /*padding & margin*/
 /*size*/
-body { background-color: #f7f7f7; padding: 0; font-size: 14px; }
+body { background-color: #f7f7f7; padding: 0; font-size: 14px; color: #2C3E50; }
 
 .invalid-input { border: 1px solid #CE4844; }
 
