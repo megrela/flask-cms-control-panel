@@ -1,0 +1,41 @@
+@import "settings";
+
+.card-deck-wrapper {
+  .card-deck {
+    .card {
+      height: 400px;
+      width: 300px;
+      margin-left: 20px;
+      margin-bottom: 20px;
+      transition: all 0.3s ease 0s;
+      opacity: 1;
+      &:hover {
+        cursor: pointer;
+        box-shadow: 1px 1px 2px 1px #dddddd;
+      }
+    }
+  }
+}
+
+#image-card-list {
+  .card-deck {
+    .card {
+      .image-container {
+        text-align: center;
+        width: 100%;
+        img {
+          height: 200px;
+          max-width: 296px;
+        }
+      }
+    }
+  }
+}
+
+#text-card-list {
+  .card-deck {
+    .card {
+      height: 200px;
+    }
+  }
+}

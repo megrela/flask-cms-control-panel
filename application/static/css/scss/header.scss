@@ -1,0 +1,18 @@
+@import "settings";
+
+.pageheader {
+  margin-bottom: 3rem;
+  padding-top: 4rem;
+  padding-bottom: 2rem;
+  color: #fff;
+  text-align: left;
+  background-color: #563d7c;
+
+  h1 {
+    font-size: 4rem
+  }
+
+  .lead {
+    font-size: 1.5rem;
+  }
+}
