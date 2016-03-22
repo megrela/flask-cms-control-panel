@@ -12,7 +12,7 @@
                 <input type="text"
                        class="form-control
                        {% if validation is defined and validation["status"] == "user_not_found"%}
-                           invalid-input
+                           has-error
                        {% endif %}"
                        id="login-username"
                        placeholder="Username"

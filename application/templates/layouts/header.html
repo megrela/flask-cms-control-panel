@@ -11,38 +11,59 @@
 {% endblock %}
 
 {% block header %}
-    <nav class="navbar navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="{{ url_for("main.index") }}">
+    <header class="navbar navbar-sticky-top navbar-light" role="banner">
+        <ul class="nav navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for("main.index") }}">
                     {{ dependencies["header"].app_name  }}
                 </a>
-            </div>
-            <div class="navbar-collapse navbar-left">
-                <ul class="nav navbar-nav">
-                    {% for item in dependencies["header"].menu_items %}
-                        {% if item.children|length > 0 %}
-                            <li class="dropdown{% if item.active %} active{% endif %}">
-                                <a href="{{ item.url }}"
-                                   class="dropdown-toggle"
-                                   data-toggle="dropdown"
-                                   role="button"
-                                   aria-haspopup="true"
-                                   aria-expanded="false">
-                                    {{ item.name }}<span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    {% for sub_menu in item.children %}
-                                        <li><a href="{{ sub_menu.url }}">{{ sub_menu.name }}</a></li>
-                                    {% endfor %}
-                                </ul>
-                            </li>
-                        {% else %}
-                            <li class="{% if item.active %}active{% endif %}"><a href="{{ item.url }}">{{ item.name }}</a></li>
-                        {% endif %}
-                    {% endfor %}
-                </ul>
-            </div>
+            </li>
+            {% for item in dependencies["header"].menu_items %}
+                {% if item.children|length > 0 %}
+                    <li class="nav-item dropdown{% if item.active %} active{% endif %}">
+                        <a href="{{ item.url }}"
+                           class="dropdown-toggle nav-link"
+                           data-toggle="dropdown"
+                           role="button"
+                           aria-haspopup="true"
+                           aria-expanded="false">
+                            {{ item.name }}<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            {% for sub_menu in item.children %}
+                                <li class="dropdown-item"><a class="nav-link" href="{{ sub_menu.url }}">{{ sub_menu.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% else %}
+                    <li class="nav-item {% if item.active %}active{% endif %}"><a class="nav-link" href="{{ item.url }}">{{ item.name }}</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </header>
+    <style>
+        .pageheader {
+            margin-bottom: 3rem;
+            padding-top: 4rem;
+            padding-bottom: 2rem;
+            color: #fff;
+            text-align: left;
+            background-color: #563d7c;
+        }
+        .pageheader h1 {
+            font-size: 4rem
+        }
+        .pageheader p {
+            font-size: 1.5rem;
+        }
+
+    </style>
+    <div class="pageheader">
+        <div class="container">
+            <h1>Component Groups</h1>
+            <p class="lead">
+                displaying the list of component groups you can edit, delete or add new component group
+            </p>
         </div>
-    </nav>
+    </div>
 {% endblock %}

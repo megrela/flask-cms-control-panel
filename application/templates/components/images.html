@@ -10,4 +10,69 @@
 
 {% block content %}
     {{ super() }}
+    <div class="container">
+        <style type="text/css">
+            .card {
+                width: 400px !important;
+                margin-left: 20px;
+                margin-bottom: 20px;
+            }
+            .card .image-container {
+                text-align: center;
+                width: 100%;
+            }
+            .card .image-container img {
+                height: 200px;
+                max-width: 400px;
+            }
+        </style>
+    <div class="card-deck-wrapper">
+        <div class="card-deck clearfix">
+            <div class="card pull-xs-left">
+                <div class="image-container">
+                    <img src="http://www.kungfunguyen.com/wp-content/uploads/2013/08/Bootstrap-2-1-Is-the-Latest-Update-to-Twitter-s-Popular-Open-Source-Project.png" data-src="..." alt="Card image cap" class="center-box">
+                </div>
+                <div class="card-block">
+                    <h4 class="card-title">Name</h4>
+                    <p class="card-text">image-key</p>
+                    <p class="card-text">
+                        <small class="text-muted">
+                            lorem ipsum dolar sit amet some people think that they are strong, but mahatma gandhi did'nt agree
+                        </small>
+                    </p>
+                </div>
+            </div>
+
+            <div class="card pull-xs-left">
+                <div class="image-container">
+                    <img src="http://www.kungfunguyen.com/wp-content/uploads/2013/08/Bootstrap-2-1-Is-the-Latest-Update-to-Twitter-s-Popular-Open-Source-Project.png" data-src="..." alt="Card image cap" class="center-box">
+                </div>
+                <div class="card-block">
+                    <h4 class="card-title">Name</h4>
+                    <p class="card-text">image-key</p>
+                    <p class="card-text">
+                        <small class="text-muted">
+                            lorem ipsum dolar sit amet some people think that they are strong, but mahatma gandhi did'nt agree
+                        </small>
+                    </p>
+                </div>
+            </div>
+
+            <div class="card pull-xs-left">
+                <div class="image-container">
+                    <img src="http://www.kungfunguyen.com/wp-content/uploads/2013/08/Bootstrap-2-1-Is-the-Latest-Update-to-Twitter-s-Popular-Open-Source-Project.png" data-src="..." alt="Card image cap" class="center-box">
+                </div>
+                <div class="card-block">
+                    <h4 class="card-title">Name</h4>
+                    <p class="card-text">image-key</p>
+                    <p class="card-text">
+                        <small class="text-muted">
+                            lorem ipsum dolar sit amet some people think that they are strong, but mahatma gandhi did'nt agree
+                        </small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
 {% endblock %}

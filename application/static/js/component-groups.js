@@ -6,84 +6,37 @@ $(document).ready(function () {
     var module = {
         init: function () {
             var me = this;
-            me.state = "LIST";
-            me.newName = $('#new-component-group-name');
-            me.newGid = $('#new-component-group-id');
-            me.addNewBtn = $('#add-new-component-group');
-            me.componentsTable = $('#component-list');
-            me.newComponentPage = $('#new-component-page');
-            me.saveComponentBtn = $('#save-component-btn');
-            me.cancelAddition = $('#cancel-addition');
+            me.new = {
+                name: $("#new-component-group-name"),
+                groupId: $("#new-component-group-group-id"),
+                btn: $('#new-component-group-add-btn')
+            };
             me.template = $('#component-group-template');
-            me.newComponentGroupAddBtn = $('#new-component-group-add-btn');
-            module.listen();
-        },
+            me.list = $('#component-group-list');
 
-        toggleNewPage: function () {
-            var me = this;
-            if (me.state == "LIST") {
-                me.addNewBtn
-                    .removeClass("btn-success")
-                    .addClass("btn-danger")
-                    .text("Cancel");
-                me.state = "LIST,ADD"
-            } else {
-                me.addNewBtn
-                    .addClass("btn-success")
-                    .removeClass("btn-danger")
-                    .text("Add New");
-                me.state = "LIST";
-            }
-            me.newComponentPage.toggle();
+            module.listen();
         },
 
         listen: function() {
             var me = this;
 
-            me.addNewBtn.click(function () {
-                me.toggleNewPage();
+            me.new.btn.click(function () {
+                me.addNewItem(me.new.name.val(), me.new.groupId.val());
             });
 
-            me.newComponentGroupAddBtn.click(function () {
-
-                me.addNewItem(
-                    me.newName.val(),
-                    me.newGid.val()
-                );
-                me.newName.val("");
-                me.newGid.val("");
+            $(document).on('click', '.update-btn', function () {
+                var form = $(this).parents("form:first");
+                var id = form.attr('data-id');
+                var name = form.find(".name").first();
+                var groupId = form.find(".group-id").first();
+                me.updateItem(id, name, groupId);
             });
 
-            $(document).on("click",'td.edit-icon', function () {
-                $(this).parent().hide();
-                $(this).parent().next(".edit-mode").show();
-            });
-
-            $(document).on("click",'.update-comp-group', function () {
-                var name = $($(this).parent().parent().find(".name")[0]).val();
-                var groupId = $($(this).parent().parent().find(".group-id")[0]).val();
-
-                $($(this).parent().parent().prev(".view-mode").find(".name")[0]).text(name);
-                $($(this).parent().parent().prev(".view-mode").find(".group-id")[0]).text(groupId);
-
-                $(this).parent().parent().hide();
-                $(this).parent().parent().prev(".view-mode").show();
-
-                me.updateItem( $(this).attr("data-id"), name, groupId );
-            });
-
-            $(document).on("click", 'td.delete-icon', function () {
-                $(this).parent().children(".icon-container").each(function () {
-                    $(this).hide();
-                });
-
-                $(this).parent().children(".delete-mode").first().show();
-            });
-
-            $(document).on("click", '.delete-component-group', function () {
-                $(this).parent().parent().next().detach();
-                $(this).parent().parent().detach();
-                me.removeItem($(this).attr("data-id"));
+            $(document).on('click', '.remove-btn', function () {
+                var form = $(this).parents("form:first");
+                var id = form.attr('data-id');
+                me.removeItem(id);
+                form.detach();
             });
         },
         
@@ -92,16 +45,15 @@ $(document).ready(function () {
             var callback = {
                 success: function (resp) {
                     var clone = me.template.clone();
-                    clone.find("tr").each(function () {
-                        $(this).html(
-                            $(this).html()
-                                .replaceAll("#name#", name)
-                                .replaceAll("#group_id#", id)
-                                .replaceAll("#id#", resp.id)
-                        );
-                        me.componentsTable.append($(this));
-                    });
-                    me.toggleNewPage();
+                    me.new.name.val('');
+                    me.new.groupId.val('');
+                    clone.html(
+                        clone.html()
+                            .replaceAll("#name#", name)
+                            .replaceAll("#group_id#", id)
+                            .replaceAll("#id#", resp.id)
+                    ).css('display','');
+                    me.list.append(clone);
                 },
                 fail: function (resp) {
                     console.log("failed");
@@ -126,16 +78,15 @@ $(document).ready(function () {
         updateItem: function(id, name, groupId) {
             var callback = {
                 success: function (resp) {
-
+                    name.attr('data-old-value', name.val());
+                    groupId.attr('data-old-value', groupId.val());
                 },
                 fail: function(resp) {
                     console.log("failed");
                 }
             };
-            app.ajax("update", {id: id, name: name, group_id: groupId}, callback);
+            app.ajax("update", {id: id, name: name.val(), group_id: groupId.val()}, callback);
         }
-
-
     };
 
     module.init();

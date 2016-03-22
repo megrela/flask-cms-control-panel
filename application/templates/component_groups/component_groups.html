@@ -3,6 +3,7 @@
 {% block css %}
     {{ super() }}
     <link rel="stylesheet" href="/static/css/min/component_groups.css">
+
 {% endblock %}
 
 {% block script %}
@@ -10,121 +11,75 @@
     <script src="/static/js/component-groups.js"> </script>
 {% endblock %}
 
+
 {% block content %}
-    <div class="container" id="component-groups">
-        <h3> Component Groups </h3>
-        <div class="clearfix">
-            <div class="table-container container pull-left">
-                <div class="action-bar">
-                    <a href="#" id="add-new-component-group" class="btn btn-success btn-sm">Add New</a>
-                </div>
+    <div id="component-groups" class="container">
+        <div style="margin-bottom: 20px; padding-left: 15px;">
+            <strong>you can add new component group from here</strong>
+        </div>
 
-                <table id="component-group-template">
-                    <tr class="view-mode">
-                        <td class="name">#name#</td>
-                        <td class="group-id">#group_id#</td>
-                        <td class="icon-container edit-icon">
-                            <span class="glyphicon glyphicon-edit"></span>
-                        </td>
-                        <td class="icon-container delete-icon">
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </td>
-                        <td class="delete-mode button-within" colspan="2">
-                            <button class="btn btn-sm btn-danger delete-component-group"
-                                    data-id="#id#">
-                                Delete
-                            </button>
-                        </td>
-                    </tr>
-                    <tr class="edit-mode">
-                        <td>
-                            <input type="text"
-                                   value="#name#"
-                                   class="form-control input-sm name"
-                                   placeholder="Name"
-                            >
-                        </td>
-                        <td>
-                            <input type="text"
-                                   value="#group_id#"
-                                   class="form-control input-sm group-id"
-                                   placeholder="Group Id"
-                            >
-                        </td>
-                        <td colspan="2" class="button-within">
-                            <button class="btn btn-sm btn-warning update-comp-group"
-                                    data-id="#id#">
-                                Save
-                            </button>
-                        </td>
-                    </tr>
-                </table>
-
-
-
-                <table class="table table-bordered table-striped table-hover" id="component-list">
-                    <thead>
-                        <tr>
-                            <th style="width: 200px;">Name</th>
-                            <th style="width: 200px;">Group Id</th>
-                            <th class="icon-container edit-icon">
-                                <span class="glyphicon glyphicon-edit"></span>
-                            </th>
-                            <th class="icon-container delete-icon">
-                                <span class="glyphicon glyphicon-remove"></span>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr id="new-component-page" class="success">
-                            <td><input type="text" class="form-control input-sm" placeholder="name" id="new-component-group-name"></td>
-                            <td><input type="text" class="form-control input-sm" placeholder="id" id="new-component-group-id"></td>
-                            <td colspan="2" class="button-within"><button class="btn btn-sm btn-success" id="new-component-group-add-btn">Save</button></td>
-                        </tr>
-
-                        {% for item in dependencies["component_groups"] %}
-                            <tr class="view-mode">
-                                <td class="name">{{ item["name"] }}</td>
-                                <td class="group-id">{{ item["group_id"] }}</td>
-                                <td class="icon-container edit-icon">
-                                    <span class="glyphicon glyphicon-edit"></span>
-                                </td>
-                                <td class="icon-container delete-icon">
-                                    <span class="glyphicon glyphicon-remove"></span>
-                                </td>
-                                <td class="delete-mode button-within" colspan="2">
-                                    <button class="btn btn-sm btn-danger delete-component-group"
-                                            data-id="{{ item["_id"] }}">
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr class="edit-mode">
-                                <td>
-                                    <input type="text"
-                                           value="{{ item["name"] }}"
-                                           class="form-control input-sm name"
-                                           placeholder="Name"
-                                    >
-                                </td>
-                                <td>
-                                    <input type="text"
-                                           value="{{ item["group_id"] }}"
-                                           class="form-control input-sm group-id"
-                                           placeholder="Group Id"
-                                    >
-                                </td>
-                                <td colspan="2" class="button-within">
-                                    <button class="btn btn-sm btn-warning update-comp-group"
-                                            data-id="{{ item["_id"] }}">
-                                        Save
-                                    </button>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+        <form class="container form-inline" id="new-component-group-form" action="">
+            <div class="form-group">
+                <input type="text" class="form-control form-control-success name" placeholder="Group name" id="new-component-group-name">
             </div>
+            <div class="form-group">
+                <input type="text" class="form-control form-control-success group-id" placeholder="Group Id" id="new-component-group-group-id">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-success-outline" type="button" id="new-component-group-add-btn">add</button>
+            </div>
+        </form>
+
+        <hr>
+
+        <div id="component-group-list">
+            <form class="container form-inline component-group-item" id="component-group-template" action="" data-id="#id#" style="display: none;">
+                <div class="form-group">
+                    <input type="text"
+                               class="form-control name"
+                               placeholder="Group Name"
+                               value="#name#"
+                        >
+                </div>
+                <div class="form-group">
+                    <input type="text"
+                               class="form-control group-id"
+                               placeholder="Group ID"
+                               value="#group_id#"
+                        >
+                </div>
+                <div class="form-group">
+                    <div class="btn-group">
+                        <button class="btn btn-warning-outline" type="button">update</button>
+                        <button class="btn btn-danger-outline" type="button">remove</button>
+                    </div>
+                </div>
+            </form>
+
+            {% for item in dependencies["component_groups"] %}
+                <form class="container form-inline component-group-item" action="" data-id="{{ item["_id"] }}">
+                    <div class="form-group">
+                        <input type="text"
+                               class="form-control name"
+                               placeholder="Group Name"
+                               value="{{ item["name"]}}"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <input type="text"
+                               class="form-control group-id"
+                               placeholder="Group ID"
+                               value="{{ item["group_id"]}}"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <div class="btn-group">
+                            <button class="btn btn-warning-outline update-btn" type="button">update</button>
+                            <button class="btn btn-danger-outline remove-btn" type="button">remove</button>
+                        </div>
+                    </div>
+                </form>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
