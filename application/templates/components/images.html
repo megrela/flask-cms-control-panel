@@ -6,6 +6,7 @@
 
 {% block script %}
     {{ super() }}
+    <script src="/static/js/components/components.image.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -13,18 +14,20 @@
     <div class="container">
         <div class="card-deck-wrapper" id="image-card-list">
             <div class="card-deck clearfix">
-                <div class="card pull-xs-left component" data-toggle="modal" data-target="#detailed-view">
+                <div class="card pull-xs-left component" data-toggle="modal" data-target="#detailed-view" data-id="12345">
                     <div class="image-container">
-                        <img src="http://www.kungfunguyen.com/wp-content/uploads/2013/08/Bootstrap-2-1-Is-the-Latest-Update-to-Twitter-s-Popular-Open-Source-Project.png" data-src="..." alt="Card image cap" class="center-box">
+                        <img class="value component-image"
+                             src="http://www.kungfunguyen.com/wp-content/uploads/2013/08/Bootstrap-2-1-Is-the-Latest-Update-to-Twitter-s-Popular-Open-Source-Project.png" data-src="..." alt="Card image cap">
                     </div>
                     <div class="card-block">
-                        <h4 class="card-title component-name">Name</h4>
-                        <p class="card-text component-key">image-key</p>
-                        <p class="card-text component-description">
-                            <small class="text-muted">
+                        <h4 class="card-title component-name value">Name</h4>
+                        <p class="card-text component-key value">image-key</p>
+                        <p class="card-text">
+                            <small class="text-muted component-description value">
                                 lorem ipsum dolar sit amet some people think that they are strong, but mahatma gandhi did'nt agree
                             </small>
                         </p>
+                        <p style="display: none" class="value component-group">common</p>
                     </div>
                 </div>
 
@@ -71,41 +74,47 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title">Modal title</h4>
+                    <h4 class="modal-title">Edit Component</h4>
                 </div>
 
                 <div class="modal-body">
                     <form action="">
                         <div class="form-group">
                             <label for="component-group">Component Group</label>
-                            <select name="" id="component-group" class="form-control">
+                            <select name="" id="component-group" class="form-control component-group value">
                                 <option value="login">Login</option>
                                 <option value="common">Common</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="component-name">Component Name</label>
-                            <input type="text" class="form-control" id="component-name">
+                            <input type="text" class="form-control component-name value">
                         </div>
                         <div class="form-group">
                             <label for="component-id">Component Key</label>
-                            <input type="text" class="form-control" id="component-key">
+                            <input type="text" class="form-control component-key value">
                         </div>
-                        <div class="form-group">
+
+                        <div class="form-group image-container">
                             <label for="component-image">Component Image</label>
-                            <img src="http://www.kungfunguyen.com/wp-content/uploads/2013/08/Bootstrap-2-1-Is-the-Latest-Update-to-Twitter-s-Popular-Open-Source-Project.png" data-src="..." alt="Card image cap" class="" width="100%">
-                            <div class="clearfix" style="margin-top: -41px;">
-                                <span class="page-link pull-left" style="cursor: pointer;" onclick="$(this).next().trigger('click');">change image</span>
-                                <input type="file" id="component-image" style="display: none;">
-                                <span class="page-link pull-left text-warning" style="cursor: pointer;">upload</span>
+                            <img src="" class="component-image">
+
+                            <div class="clearfix image-actions">
+                                <span class="page-link change-image" onclick="$(this).next().trigger('click');">change image</span>
+                                <input type="file" id="component-image" class="file-upload" style="display: none;">
+                                <div class="name-and-upload-container">
+                                    <a class="image-name page-link text-muted">image name</a>
+                                    <span class="page-link text-warning upload-image">upload</span>
+                                </div>
+                                <progress class="progress progress-warning pull-left upload-progress" value="10" max="100"></progress>
                             </div>
-                            <progress class="progress progress-warning pull-left" value="10" max="100"></progress>
+
 
                         </div>
 
                         <div class="form-group">
                             <label for="component-description">Component Description</label>
-                            <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea>
+                            <textarea class="form-control component-description" name="" id="" cols="30" rows="10"></textarea>
                         </div>
                     </form>
                 </div>

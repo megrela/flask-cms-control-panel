@@ -6,6 +6,14 @@ $(document).ready(function () {
         $(this).parents(".has-danger:first").removeClass("has-danger");
     });
 
+    $('.file-upload').change(function () {
+        var file = this.files[0];
+        $(this).next().children(".image-name").first()
+            .text(file.name)
+            .attr('href', URL.createObjectURL(file))
+            .attr('target', '_blank');
+    });
+
     $(".dropdown-toggle").dropdown();
 });
 
@@ -13,4 +21,9 @@ $(document).ready(function () {
 String.prototype.replaceAll = function(search, replacement) {
     var target = this;
     return target.split(search).join(replacement);
+};
+
+Array.prototype.merge = function (other_array) {
+    /* you should include a test to check whether other_array really is an array */
+    other_array.forEach(function(v) {this.push(v)}, this);
 };
