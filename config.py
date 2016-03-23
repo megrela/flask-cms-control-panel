@@ -12,3 +12,5 @@ PORT = 5000
 MONGO_DBNAME = "cms"
 MONGO_HOST = "localhost"
 MONGO_PORT = 27017
+
+UPLOAD_FOLDER = '/uploads/'

@@ -1,6 +1,6 @@
-from flask import render_template, request, session, redirect, url_for
+from flask import render_template, request, session, redirect, url_for, current_app
 from application.mongo_db import mongo
-
+import os
 
 import json
 from bson.objectid import ObjectId
@@ -8,6 +8,8 @@ from bson.objectid import ObjectId
 from . import module
 from . import validation
 from .setup import setup
+
+from werkzeug.utils import secure_filename
 
 
 @module.route("/<component_type>", methods=("GET", "POST"))
@@ -60,6 +62,10 @@ def remove(component_type):
 @module.route("/<component_type>/update", methods=("POST",))
 def update(component_type):
     if validation.validate_type(component_type):
+        file = request.files('file')
+        if file:
+            filename = secure_filename(file.filename)
+            file.save(os.pardir.join(current_app.config["UPLOAD_FOLDER"], filename))
         result = list(
             mongo.db.components.find({
                 "group_id": ObjectId(request.form.get("group_id"))

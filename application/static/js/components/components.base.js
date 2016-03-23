@@ -42,6 +42,15 @@ var ComponentBase = {
                     }
                 }
             }
+
+            modal.find('.reset').each(function () {
+                $(this).text('');
+                $(this).val('');
+            });
+
+            modal.find('.reset-hide').each(function () {
+                $(this).hide();
+            });
         });
     },
 
