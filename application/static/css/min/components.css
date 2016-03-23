@@ -8,7 +8,7 @@
 
 #detailed-view .image-container .component-image { width: 100%; max-height: 400px; }
 #detailed-view .image-container .file-upload { width: 0; height: 0; overflow: hidden; }
-#detailed-view .image-container .image-actions { margin-top: -41px; }
+#detailed-view .image-container .image-actions { padding-left: 1px; }
 #detailed-view .image-container .image-actions .change-image { cursor: pointer; display: inline-block; width: 131px; }
 #detailed-view .image-container .image-actions .name-and-upload-container { display: inline-block; width: calc(100% - 130px); }
 #detailed-view .image-container .image-actions .name-and-upload-container .image-name { cursor: pointer; display: inline-block; width: calc(100% - 69px); }

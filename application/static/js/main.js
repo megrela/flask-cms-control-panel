@@ -7,6 +7,7 @@ $(document).ready(function () {
     });
 
     $('.file-upload').change(function () {
+        console.log("clicked");
         var file = this.files[0];
         $(this).next().show().children(".image-name").first()
             .text(file.name)
@@ -26,6 +27,25 @@ $(document).ready(function () {
 
     $(".dropdown-toggle").dropdown();
 });
+
+resetModalFields = function (modal) {
+    modal.find('.reset').each(function () {
+        var el = $(this);
+        if (el.is('input') || el.is('select') ) {
+            el.val('');
+        } else {
+            if (el.is("img")) {
+                el.attr('src', '');
+            } else {
+                el.text("");
+            }
+        }
+    });
+
+    modal.find('.reset-hide').each(function () {
+        $(this).hide();
+    });
+};
 
 
 String.prototype.replaceAll = function(search, replacement) {
