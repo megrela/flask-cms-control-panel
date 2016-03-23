@@ -5,26 +5,6 @@ $(document).ready(function () {
     $('.has-danger input').focus(function () {
         $(this).parents(".has-danger:first").removeClass("has-danger");
     });
-
-    $('.file-upload').change(function () {
-        console.log("clicked");
-        var file = this.files[0];
-        $(this).next().show().children(".image-name").first()
-            .text(file.name)
-            .attr('href', URL.createObjectURL(file))
-            .attr('target', '_blank');
-    });
-
-    $('.upload-image').click(function () {
-        var src = $(this).prev(".image-name").first().attr('href');
-        var img = $(this).parent().parent().prev("img").first();
-
-        img.fadeOut('fast', function () {
-            img.attr('src', src);
-            img.fadeIn('fast');
-        });
-    });
-
     $(".dropdown-toggle").dropdown();
 });
 

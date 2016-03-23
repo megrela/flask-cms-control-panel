@@ -1,0 +1,10 @@
+<label>{{ label }}</label>
+<img src="" class="{{ image_class }}">
+<div class="clearfix image-actions">
+    <span class="page-link change-image" onclick="$(this).next().trigger('click');">change image</span>
+    <input type="file" id="component-image" name="{{ input_name }}" class="file-upload" style="display: none;">
+    <div class="name-and-upload-container {{ after_select_class }}">
+        <a class="image-name page-link text-muted reset">image name</a>
+        <span class="page-link text-warning upload-image">upload</span>
+    </div>
+</div>

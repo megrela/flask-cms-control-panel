@@ -7,6 +7,7 @@
 {% block script %}
     {{ super() }}
     <script src="/static/js/components/components.image.js"></script>
+    <script src="/static/js/file-upload.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -97,16 +98,12 @@
                         </div>
 
                         <div class="form-group image-container">
-                            <label>Component Image</label>
-                            <img src="" class="component-image reset">
-                            <div class="clearfix image-actions">
-                                <span class="page-link change-image" onclick="console.log('clicked'); $(this).next().trigger('click');">change image</span>
-                                <input type="file" id="component-image" name="image" class="file-upload" style="display: none;">
-                                <div class="name-and-upload-container reset-hide">
-                                    <a class="image-name page-link text-muted reset">image name</a>
-                                    <span class="page-link text-warning upload-image">upload</span>
-                                </div>
-                            </div>
+                            {% with label="Component Image",
+                                    image_class="component-image reset",
+                                    input_name="image",
+                                    after_select_class="reset-hide" %}
+                                {% include "file_upload/image.html" %}
+                            {% endwith %}
                         </div>
                         <div class="form-group">
                             <label for="description">Component Description</label>

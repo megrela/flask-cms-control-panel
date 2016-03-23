@@ -23,5 +23,10 @@ MODULES = [
         "name": "components",
         "url": "/components",
         "models": False
+    },
+    {
+        "name": "file_upload",
+        "url": "/file_upload",
+        "models": False
     }
 ]
