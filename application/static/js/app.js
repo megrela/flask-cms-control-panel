@@ -16,6 +16,10 @@ var app = {
                 callback.fail(resp);
             }
         });
+    },
+    
+    uploadImage: function (url, file) {
+        
     }
 };
 
