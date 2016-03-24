@@ -12,7 +12,7 @@ from .setup import setup
 from werkzeug.utils import secure_filename
 
 
-@module.route("/<component_type>", methods=("GET", "POST"))
+@module.route("/<component_type>/", methods=("GET", "POST"))
 def index(component_type):
     kwargs = {}
     if validation.validate_type(component_type):
@@ -38,12 +38,12 @@ def filter_components(component_type):
 @module.route("/<component_type>/add", methods=("POST",))
 def add(component_type):
     if validation.validate_type(component_type):
-        result = list(
-            mongo.db.components.find({
-                "group_id": ObjectId(request.form.get("group_id"))
-            })
-        )
-        return json.dumps(result)
+        data = {"type": component_type}
+        for item in request.form:
+            if item != "ajax":
+                data[item] = request.form[item]
+        cid = mongo.db.components.insert_one(data).inserted_id
+        return json.dumps({"id": str(cid)})
     else:
         return json.dumps({}), 404
 
@@ -62,16 +62,22 @@ def remove(component_type):
 @module.route("/<component_type>/update", methods=("POST",))
 def update(component_type):
     if validation.validate_type(component_type):
-        file = request.files('file')
-        if file:
-            filename = secure_filename(file.filename)
-            file.save(os.pardir.join(current_app.config["UPLOAD_FOLDER"], filename))
-        result = list(
-            mongo.db.components.find({
-                "group_id": ObjectId(request.form.get("group_id"))
-            })
+        data = {"type": component_type}
+        for item in request.form:
+            if item != "ajax":
+                continue
+            if item == 'id':
+                oid = request.form.get("id")
+        mongo.db.component_groups.update(
+            {
+                "_id": ObjectId(oid)
+            },
+            {
+                "$set": {
+                    data
+                }
+            }
         )
-        return json.dumps(result)
+        return json.dumps({})
     else:
         return json.dumps({}), 404
-

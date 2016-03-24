@@ -19,15 +19,18 @@ var ComponentBase = {
         var url = me.modalState;
         var callback = {
             success: function (resp) {
-
+                console.log(resp);
             },
-            failed: function (resp) {
-
+            fail: function (resp) {
+                console.log(resp);
             }
         };
 
         me.modal.find(".value").each(function () {
-            request[$(this).attr('name')] = $(this).val();
+            var val = "";
+            if ($(this).is("textarea")) val = $(this).text();
+            else val = $(this).val();
+            request[$(this).attr('name')] = val;
         });
         app.ajax(url, request, callback);
     },
@@ -39,7 +42,7 @@ var ComponentBase = {
         });
 
         $('#add-new-component-btn').click(function () {
-            me.modalState = "new";
+            me.modalState = "add";
             me.modal.modal("show");
         });
 
