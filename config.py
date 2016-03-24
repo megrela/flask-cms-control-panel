@@ -13,4 +13,4 @@ MONGO_DBNAME = "cms"
 MONGO_HOST = "localhost"
 MONGO_PORT = 27017
 
-UPLOAD_FOLDER = '/uploads/'
+UPLOAD_FOLDER = "application/uploads"

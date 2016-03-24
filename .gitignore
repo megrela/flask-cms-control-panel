@@ -70,4 +70,10 @@ target/
 #db
 /db
 
+#sass-cache
 /application/static/css/.sass-cache
+
+
+#uploads
+/application/uploads/*
+

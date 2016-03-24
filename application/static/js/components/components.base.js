@@ -4,6 +4,7 @@
 var ComponentBase = {
     init: function() {
         var me = this;
+        me.modal = $('#detailed-view');
         me.setListeners();
         me.availableClasses = [
             ".component-name",
@@ -19,20 +20,29 @@ var ComponentBase = {
         });
 
         $('#add-new-component-btn').click(function () {
-            $('#detailed-view').modal("show");
+            me.modalState = "NEW";
+            me.modal.modal("show");
+        });
+
+        $('#modal-save').click(function () {
+            if (me.modalState === "NEW") {
+                me.add();
+            } else {
+                me.update();
+            }
         });
 
         $('#detailed-view').on('show.bs.modal', function (e) {
             var component = $(e.relatedTarget);
-            var modal = $(this);
-            resetModalFields(modal);
+            resetModalFields(me.modal);
             if (component.hasClass("card")) {
+                me.modalState = "UPDATE";
                 for (var i = 0; i < me.availableClasses.length; i++) {
                     var cl = me.availableClasses[i];
                     var els = component.find(cl);
                     if (els.length) {
                         var el = els.first();
-                        var target = modal.find(cl).first();
+                        var target = me.modal.find(cl).first();
                         if (el.is('img')) {
                             target.attr('src', el.attr('src'));
                         } else {
