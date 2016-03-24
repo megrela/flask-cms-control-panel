@@ -64,12 +64,9 @@ $(document).ready(function () {
 
         removeItem: function (id) {
             var me = this;
-
             var callback = {
                 success: function(resp) {},
-                fail: function (resp) {
-                    console.log("failed");
-                }
+                fail: function (resp) {}
             };
 
             app.ajax("remove", {id: id}, callback);
@@ -81,9 +78,7 @@ $(document).ready(function () {
                     name.attr('data-old-value', name.val());
                     groupId.attr('data-old-value', groupId.val());
                 },
-                fail: function(resp) {
-                    console.log("failed");
-                }
+                fail: function(resp) {}
             };
             app.ajax("update", {id: id, name: name.val(), group_id: groupId.val()}, callback);
         }

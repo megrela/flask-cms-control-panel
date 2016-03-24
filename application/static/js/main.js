@@ -28,6 +28,27 @@ resetModalFields = function (modal) {
 };
 
 
+copyFieldValues = function (source, target, classes) {
+    for (var i = 0; i < classes.length; i++) {
+        var cl = classes[i];
+        var els = source.find(cl);
+        if (els.length) {
+            var el = els.first();
+            var targetEl = target.find(cl).first();
+            if (el.is('img')) {
+                targetEl.attr('src', el.attr('src'));
+            } else {
+                var txt = el.text().trim();
+                if (targetEl.is('input') || targetEl.is('select'))
+                    targetEl.val(txt);
+                else {
+                    targetEl.text(txt);
+                }
+            }
+        }
+    }
+};
+
 String.prototype.replaceAll = function(search, replacement) {
     var target = this;
     return target.split(search).join(replacement);

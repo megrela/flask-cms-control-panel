@@ -3,20 +3,19 @@
  */
 
 $(document).ready(function () {
-    $('.file-upload').change(function () {
+    $('.file-upload').change(function (e) {
         var file = this.files[0];
-        $(this).next().show().children(".image-name").first()
+        var src = URL.createObjectURL(file);
+        $(this).next().next().show().children(".image-name").first()
             .text(file.name)
-            .attr('href', URL.createObjectURL(file))
+            .attr('href', src)
             .attr('target', '_blank');
-    });
-
-    $('.upload-image').click(function () {
-        var src = $(this).prev(".image-name").first().attr('href');
-        var img = $(this).parent().parent().prev("img").first();
+        var img = $(this).parent().prev("img").first();
         img.fadeOut('fast', function () {
             img.attr('src', src);
             img.fadeIn('fast');
         });
+        e.preventDefault();
+        e.stopPropagation();
     });
 });

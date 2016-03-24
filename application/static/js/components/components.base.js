@@ -52,24 +52,7 @@ var ComponentBase = {
             resetModalFields(me.modal);
             if (component.hasClass("component")) {
                 me.modalState = "update";
-                for (var i = 0; i < me.availableClasses.length; i++) {
-                    var cl = me.availableClasses[i];
-                    var els = component.find(cl);
-                    if (els.length) {
-                        var el = els.first();
-                        var target = me.modal.find(cl).first();
-                        if (el.is('img')) {
-                            target.attr('src', el.attr('src'));
-                        } else {
-                            var txt = el.text().trim();
-                            if (target.is('input') || target.is('select'))
-                                target.val(txt);
-                            else {
-                                target.text(txt);
-                            }
-                        }
-                    }
-                }
+                copyFieldValues(component, me.modal, me.availableClasses);
             }
         });
     }
