@@ -43,7 +43,11 @@ def add(component_type):
             if item != "ajax" and item != 'id':
                 data[item] = request.form[item]
         cid = mongo.db.components.insert_one(data).inserted_id
-        return json.dumps({"id": str(cid)})
+
+        return json.dumps(
+            {"id": str(cid), "image": url_for("file_upload.get", name=data["image"])},
+            ensure_ascii=False
+        ).encode("utf8")
     else:
         return json.dumps({}), 404
 
@@ -54,6 +58,7 @@ def remove(component_type):
         mongo.db.components.remove({
             "_id": ObjectId(request.form.get("id"))
         })
+
         return json.dumps({})
     else:
         return json.dumps({}), 404
@@ -69,7 +74,6 @@ def update(component_type):
             if item != 'id' and request.form.get(item) != '':
                 data[item] = request.form.get(item)
         oid = request.form.get("id")
-        print(data)
         mongo.db.components.update(
             {
                 "_id": ObjectId(oid)
@@ -78,6 +82,9 @@ def update(component_type):
                 "$set": data
             }
         )
+        if "image" in data:
+            src = u""+url_for("file_upload.get", name=data["image"])
+            return json.dumps({"image": src})
         return json.dumps({})
     else:
         return json.dumps({}), 404

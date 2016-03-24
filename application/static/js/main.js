@@ -18,6 +18,7 @@ resetModalFields = function (modal) {
                 el.attr('src', '');
             } else {
                 el.text("");
+                el.prop("value","");
             }
         }
     });
@@ -35,15 +36,27 @@ copyFieldValues = function (source, target, classes) {
         if (els.length) {
             var el = els.first();
             var targetEl = target.find(cl).first();
-            if (el.is('img')) {
-                targetEl.attr('src', el.attr('src'));
+            var sourceValue = "";
+
+            if (el.is("img")) {
+                sourceValue = el.attr("src");
+            } else if (el.is("input") || el.is("select")) {
+                sourceValue = el.val();
+            } else if (el.is("textarea")){
+                sourceValue = el.prop("value");
             } else {
-                var txt = el.text().trim();
-                if (targetEl.is('input') || targetEl.is('select'))
-                    targetEl.val(txt);
-                else {
-                    targetEl.text(txt);
-                }
+                sourceValue = el.text();
+            }
+
+            if (targetEl.is('img')) {
+                targetEl.attr('src', sourceValue);
+            } else if (targetEl.is("input") || targetEl.is("select")) {
+                targetEl.val(sourceValue);
+            } else if (targetEl.is("textarea")) {
+                targetEl.text(sourceValue);
+                targetEl.prop("value", sourceValue);
+            } else {
+                targetEl.text(sourceValue);
             }
         }
     }

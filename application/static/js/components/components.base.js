@@ -5,6 +5,8 @@ var ComponentBase = {
     init: function() {
         var me = this;
         me.modal = $('#detailed-view');
+        me.template = $('#component-template');
+        me.list = $('#component-list-wrapper');
         me.setListeners();
         me.availableClasses = [
             ".component-name",
@@ -20,7 +22,19 @@ var ComponentBase = {
         var url = me.modalState;
         var callback = {
             success: function (resp) {
-                console.log(resp);
+                if (me.modalState == "add") {
+                    var clone = me.template.clone();
+                    var html = clone.html();
+                    $.each(resp, function (key, value) {
+                        html = html.replaceAll("#"+key+"#", value);
+                    });
+                    $.each(request, function (key, value) {
+                        html = html.replaceAll("#"+key+"#", value);
+                    });
+                    clone.html(html).attr("id","").appendTo(me.list);
+                } else {
+                    copyFieldValues(me.modal, me.component, me.availableClasses);
+                }
             },
             fail: function (resp) {
                 console.log(resp);
@@ -34,7 +48,6 @@ var ComponentBase = {
             else val = $(this).val();
             request[$(this).attr('name')] = val;
         });
-        console.log(request);
         app.ajax(url, request, callback);
     },
     
@@ -51,14 +64,15 @@ var ComponentBase = {
 
         $('#modal-save').click(function () {
             me.save();
+
         });
 
         $('#detailed-view').on('show.bs.modal', function (e) {
-            var component = $(e.relatedTarget);
+            me.component = $(e.relatedTarget);
             resetModalFields(me.modal);
-            if (component.hasClass("component")) {
+            if (me.component.hasClass("component")) {
                 me.modalState = "update";
-                copyFieldValues(component, me.modal, me.availableClasses);
+                copyFieldValues(me.component, me.modal, me.availableClasses);
             }
         });
     }
