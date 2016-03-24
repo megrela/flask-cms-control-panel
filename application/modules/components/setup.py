@@ -24,7 +24,7 @@ def setup(component_type):
     dependencies = {
         "header": setup_header(),
         "components": list(
-            mongo.db.component_groups.find({"type": component_type})
+            mongo.db.components.find({"type": component_type})
         ),
         "component_groups": list(
             mongo.db.component_groups.find()

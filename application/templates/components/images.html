@@ -15,53 +15,21 @@
     <div class="container">
         <div class="card-deck-wrapper" id="image-card-list">
             <div class="card-deck clearfix">
-                <div class="card pull-xs-left component" data-toggle="modal" data-target="#detailed-view" data-id="12345">
-                    <div class="image-container">
-                        <img class="value component-image"
-                             src="http://www.kungfunguyen.com/wp-content/uploads/2013/08/Bootstrap-2-1-Is-the-Latest-Update-to-Twitter-s-Popular-Open-Source-Project.png" data-src="..." alt="Card image cap">
+                {% for item in dependencies["components"] %}
+                    <div class="card pull-xs-left component" data-toggle="modal" data-target="#detailed-view" data-id="{{ item["_id"] }}">
+                        <div class="image-container">
+                            <img class="value component-image" src="{{ url_for("file_upload.get", name=item["image"]) }}" >
+                        </div>
+                        <div class="card-block">
+                            <h4 class="card-title component-name value">{{ item["name"] }}</h4>
+                            <p class="card-text component-key value">{{ item["group_id"] }}.{{ item["key"] }}</p>
+                            <p class="card-text">
+                                <small class="text-muted component-description value">{{ item["description"] }}</small>
+                            </p>
+                            <p style="display: none" class="value component-group">{{ item["group_id"] }}</p>
+                        </div>
                     </div>
-                    <div class="card-block">
-                        <h4 class="card-title component-name value">Name</h4>
-                        <p class="card-text component-key value">image-key</p>
-                        <p class="card-text">
-                            <small class="text-muted component-description value">
-                                lorem ipsum dolar sit amet some people think that they are strong, but mahatma gandhi did'nt agree
-                            </small>
-                        </p>
-                        <p style="display: none" class="value component-group">common</p>
-                    </div>
-                </div>
-
-                <div class="card pull-xs-left">
-                    <div class="image-container">
-                        <img src="http://www.kungfunguyen.com/wp-content/uploads/2013/08/Bootstrap-2-1-Is-the-Latest-Update-to-Twitter-s-Popular-Open-Source-Project.png" data-src="..." alt="Card image cap" class="center-box">
-                    </div>
-                    <div class="card-block">
-                        <h4 class="card-title">Name</h4>
-                        <p class="card-text">image-key</p>
-                        <p class="card-text">
-                            <small class="text-muted">
-                                lorem ipsum dolar sit amet some people think that they are strong, but mahatma gandhi did'nt agree
-                            </small>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="card pull-xs-left">
-                    <div class="image-container">
-                        <img src="http://www.kungfunguyen.com/wp-content/uploads/2013/08/Bootstrap-2-1-Is-the-Latest-Update-to-Twitter-s-Popular-Open-Source-Project.png" data-src="..." alt="Card image cap" class="center-box">
-                    </div>
-                    <div class="card-block">
-                        <h4 class="card-title">Name</h4>
-                        <small class="card-text">login.image.image-key-long-long</small>
-                        <div style="margin-top: 20px;"></div>
-                        <p class="card-text">
-                            <small class="text-muted">
-                                lorem ipsum dolar sit amet some people think that they are strong, but mahatma gandhi did'nt agree
-                            </small>
-                        </p>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
