@@ -40,7 +40,7 @@ def add(component_type):
     if validation.validate_type(component_type):
         data = {"type": component_type}
         for item in request.form:
-            if item != "ajax":
+            if item != "ajax" and item != 'id':
                 data[item] = request.form[item]
         cid = mongo.db.components.insert_one(data).inserted_id
         return json.dumps({"id": str(cid)})
@@ -64,18 +64,18 @@ def update(component_type):
     if validation.validate_type(component_type):
         data = {"type": component_type}
         for item in request.form:
-            if item != "ajax":
+            if item == "ajax":
                 continue
-            if item == 'id':
-                oid = request.form.get("id")
-        mongo.db.component_groups.update(
+            if item != 'id' and request.form.get(item) != '':
+                data[item] = request.form.get(item)
+        oid = request.form.get("id")
+        print(data)
+        mongo.db.components.update(
             {
                 "_id": ObjectId(oid)
             },
             {
-                "$set": {
-                    data
-                }
+                "$set": data
             }
         )
         return json.dumps({})

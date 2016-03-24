@@ -9,7 +9,8 @@ var ComponentBase = {
         me.availableClasses = [
             ".component-name",
             ".component-key",
-            ".component-group"
+            ".component-group",
+            ".component-id"
         ];
     },
 
@@ -28,10 +29,12 @@ var ComponentBase = {
 
         me.modal.find(".value").each(function () {
             var val = "";
-            if ($(this).is("textarea")) val = $(this).text();
+            if ($(this).is("textarea"))
+                val = $(this).prop("value");
             else val = $(this).val();
             request[$(this).attr('name')] = val;
         });
+        console.log(request);
         app.ajax(url, request, callback);
     },
     

@@ -22,11 +22,12 @@
                         </div>
                         <div class="card-block">
                             <h4 class="card-title component-name value">{{ item["name"] }}</h4>
-                            <p class="card-text component-key value">{{ item["group_id"] }}.{{ item["key"] }}</p>
+                            <p class="card-text component-key value">{{ item["key"] }}</p>
                             <p class="card-text">
                                 <small class="text-muted component-description value">{{ item["description"] }}</small>
                             </p>
                             <p style="display: none" class="value component-group">{{ item["group_id"] }}</p>
+                            <p style="display: none" class="value component-id">{{ item["_id"] }}</p>
                         </div>
                     </div>
                 {% endfor %}
@@ -77,6 +78,7 @@
                             <label for="description">Component Description</label>
                             <textarea class="form-control component-description reset value" name="description" id="" cols="30" rows="10"></textarea>
                         </div>
+                        <input type="text" style="display: none" class="component-id reset value" name="id">
                     </div>
                 </div>
 

@@ -74,6 +74,4 @@ target/
 /application/static/css/.sass-cache
 
 
-#uploads
-/application/uploads/*
 
