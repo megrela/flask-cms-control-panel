@@ -8,19 +8,25 @@ $(document).ready(function () {
         ".component-description"
     ]);
 
-    ComponentBase.add = function () {
+    ComponentBase.save = function () {
         var me = this;
-        var fileUploadCallback = {
-            success: function (resp) {
-                console.log(resp)
-            },
-            fail: function () {
-
-            }
-        };
         var input = me.modal.find("input[name=image]").first();
         var files = input.prop("files");
-        var url = input.attr('data-url');
-        app.uploadImage(url, files, fileUploadCallback);
+
+        if (files.length != 0) {
+            var url = input.attr('data-url');
+            var fileUploadCallback = {
+                success: function (resp) {
+                    input.next().val(resp.name);
+                    me.baseSave();
+                },
+                fail: function () {
+
+                }
+            };
+            app.uploadImage(url, files, fileUploadCallback);
+        } else {
+            me.baseSave();
+        }
     };
 });
