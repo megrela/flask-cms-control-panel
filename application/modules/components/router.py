@@ -58,7 +58,6 @@ def remove(component_type):
         mongo.db.components.remove({
             "_id": ObjectId(request.form.get("id"))
         })
-
         return json.dumps({})
     else:
         return json.dumps({}), 404
