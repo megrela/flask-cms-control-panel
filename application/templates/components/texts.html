@@ -6,47 +6,91 @@
 
 {% block script %}
     {{ super() }}
+    <script src="/static/js/components/components.text.js"></script>
+
 {% endblock %}
 
 {% block content %}
     {{ super() }}
     <div class="container">
         <div class="card-deck-wrapper" id="text-card-list">
-            <div class="card-deck clearfix">
-                <div class="card pull-xs-left component">
+            <div class="card-deck clearfix" id="component-list-wrapper">
+                <div id="component-template"
+                     class="card pull-xs-left component"
+                     data-toggle="modal"
+                     data-target="#detailed-view">
                     <div class="card-block">
-                        <h4 class="card-title component-name">Name</h4>
-                        <p class="card-text component-key">image-key</p>
-                        <p class="card-text component-value text-muted">
-                            <small>
-                                {{ "lorem ipsum dolar sit amet some people think that they are strong, but mahatma gandhi did'nt agree lorem ipsum dolar sit amet some people think that they are strong, but mahatma gandhi did'nt agree lorem ipsum dolar sit amet some people think that they are strong, but mahatma gandhi did'nt agree lorem ipsum dolar sit amet some people think that they are strong, but mahatma gandhi did'nt agree lorem ipsum dolar sit amet some people think that they are strong, but mahatma gandhi did'nt agree"[0: 150] + " ..." }}
-                            </small>
+                        <h4 class="card-title component-name value">#name#</h4>
+                        <p class="card-text component-key value">#key#</p>
+                        <p class="card-text">
+                            <small class="text-muted component-value value">#value#</small>
                         </p>
+                        <p style="display: none" class="value component-group">#group_id#</p>
+                        <p style="display: none" class="value component-id">#id#</p>
                     </div>
                 </div>
-
-                <div class="card pull-xs-left">
-                    <div class="card-block">
-                        <h4 class="card-title">Name</h4>
-                        <p class="card-text">image-key</p>
-                        <p class="card-text">
-                            <small class="text-muted">
-                                lorem ipsum dolar sit amet some people think that they are strong, but mahatma gandhi did'nt agree
-                            </small>
-                        </p>
+                {% for item in dependencies["components"] %}
+                    <div class="card pull-xs-left component"
+                         data-toggle="modal"
+                         data-target="#detailed-view">
+                        <div class="card-block">
+                            <h4 class="card-title component-name value">{{ item["name"] }}</h4>
+                            <p class="card-text component-key value">{{ item["key"] }}</p>
+                            <p class="card-text">
+                                <small class="text-muted component-value value">{{ item["value"] }}</small>
+                            </p>
+                            <p style="display: none" class="value component-group">{{ item["group_id"] }}</p>
+                            <p style="display: none" class="value component-id">{{ item["_id"] }}</p>
+                        </div>
                     </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+{% block detailed_view %}
+    {{ super() }}
+    <div class="modal fade" id="detailed-view">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Edit Component</h4>
                 </div>
 
-                <div class="card pull-xs-left">
-                    <div class="card-block">
-                        <h4 class="card-title">Name</h4>
-                        <p class="card-text">image-key</p>
-                        <p class="card-text">
-                            <small class="text-muted">
-                                lorem ipsum dolar sit amet some people think that they are strong, but mahatma gandhi did'nt agree
-                            </small>
-                        </p>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="component-group">Component Group</label>
+                        <select name="group_id" id="component-group" class="form-control component-group value reset required">
+                            <option value="login">Login</option>
+                            <option value="common">Common</option>
+                        </select>
                     </div>
+                    <div class="form-group">
+                        <label for="name">Component Name</label>
+                        <input name="name" type="text" class="form-control component-name value required reset">
+                    </div>
+                    <div class="form-group">
+                        <label for="key">Component Key</label>
+                        <input name="key" type="text" class="form-control component-key value required reset">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Component Description</label>
+                        <textarea class="form-control component-value reset value" name="value" id="" cols="30" rows="10"></textarea>
+                    </div>
+                    <input type="text" style="display: none" class="component-id reset value" name="id">
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="modal-delete">delete</button>
+                    <button type="button" class="btn btn-primary" id="modal-save" data-dismiss="modal">Save changes</button>
                 </div>
             </div>
         </div>

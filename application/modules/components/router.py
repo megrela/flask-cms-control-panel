@@ -44,10 +44,14 @@ def add(component_type):
                 data[item] = request.form[item]
         cid = mongo.db.components.insert_one(data).inserted_id
 
-        return json.dumps(
-            {"id": str(cid), "image": url_for("file_upload.get", name=data["image"])},
-            ensure_ascii=False
-        ).encode("utf8")
+        if "image" in data:
+            return json.dumps(
+                {"id": str(cid), "image": url_for("file_upload.get", name=data["image"])},
+            )
+        else:
+            return json.dumps(
+                {"id": str(cid)}
+            )
     else:
         return json.dumps({}), 404
 
