@@ -24,8 +24,9 @@
                 <label for="component-group-filter">Component Group</label>
                 <select name="" id="component-group-filter" class="form-control">
                     <option value="" selected>all</option>
-                    <option value="login">Login</option>
-                    <option value="common">Common</option>
+                    {% for item in dependencies["component_groups"] %}
+                        <option value="{{ item["group_id"] }}">{{ item["name"] }}</option>
+                    {% endfor %}
                 </select>
                 <div class="form-group">
                     <button class="btn btn-success-outline" id="add-new-component-btn" type="button" style="height: 34px;">Add</button>
