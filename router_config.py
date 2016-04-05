@@ -28,5 +28,10 @@ MODULES = [
         "name": "file_upload",
         "url": "/file_upload",
         "models": False
+    },
+    {
+        "name": "api",
+        "url": "/api",
+        "models": False
     }
 ]
