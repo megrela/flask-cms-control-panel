@@ -11,8 +11,8 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container" id="component-group-filters" style="margin-bottom: 20px;">
-        <div style="margin-bottom: 20px; padding-left: 15px;">
+    <div class="container item-row" id="component-group-filters">
+        <div class="item-row">
             <h3>components</h3>
             <p>displaying the list of component groups you can edit, delete or add new component group
             displaying the list of component groups you can edit, delete or add new component group
@@ -29,11 +29,11 @@
                     {% endfor %}
                 </select>
                 <div class="form-group">
-                    <button class="btn btn-success-outline" id="add-new-component-btn" type="button" style="height: 34px;">Add</button>
+                    <button class="btn btn-success-outline btn-sm" id="add-new-component-btn" type="button">Add</button>
                 </div>
             </div>
 
-            <div class="form-group" style="margin-left: 20px;">
+            <div class="form-group item-row">
                 <span class="text-muted">component prefix is <strong>login</strong></span>
             </div>
         </form>

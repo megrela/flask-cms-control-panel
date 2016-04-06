@@ -1,0 +1,43 @@
+$transition-all: all 0.3s ease 0s;
+
+$row-margin-bottom: 20px;
+$row-margin-top: 20px;
+$row-padding-left: 15px;
+
+$modal-width: 75%;
+$modal-img-max-height: 400px;
+$img-actions-left-padding: 1px;
+$img-change-width: 131px;
+$img-name-container-width: calc(100% - #{$img-change-width} + 1px);
+$img-upload-width: 71px;
+
+
+$card-height: 200px;
+$card-height-with-img: 400px;
+$card-width: 300px;
+$card-margin-right: 20px;
+$card-margin-bottom: 20px;
+$card-img-height: 200px;
+$card-img-max-width: 296px;
+
+$footer-height: 60px;
+$header-bottom-margin: 3rem;
+$header-top-padding: 4rem;
+$header-bottom-padding: 2rem;
+
+$login-width: 500px;
+$login-top-margin: 5%;
+
+$white: #fff;
+$dark-white: #f5f5f5;
+$light-grey: #dddddd;
+$purple: #563d7c;
+
+
+$card-hover-shadow: 5px 5px 3px 3px $light-grey;
+$card-bg: $dark-white;
+$footer-bg: $dark-white;
+$header-bg: $purple;
+$header-text-color: $white;
+
+

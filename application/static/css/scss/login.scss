@@ -1,12 +1,14 @@
+@import "settings";
+
 #login-form-container{
-  width: 500px;
-  margin-top: 5%;
+  width: $login-width;
+  margin-top: $login-top-margin;
 
   #login-form {
     width: 100%;
 
     .btn-group {
-      margin-top: 20px;
+      margin-top: $row-margin-top;
     }
   }
 }

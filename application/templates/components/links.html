@@ -24,9 +24,9 @@
                         <p class="card-text">
                             <a class="text-muted component-href value" href="#href#">#href#</a>
                         </p>
-                        <p style="display: none" class="value component-group">#group_id#</p>
-                        <p style="display: none" class="value component-id">#id#</p>
-                    </div>
+                        <p class="value component-group">#group_id#</p>
+                        <p class="value component-id">#id#</p>
+                   </div>
                 </div>
                 {% for item in dependencies["components"] %}
                     <div class="card pull-xs-left component"
@@ -38,8 +38,8 @@
                             <p class="card-text">
                                 <a class="text-muted component-href value" href="{{ item["href"] }}">{{ item["href"] }}</a>
                             </p>
-                            <p style="display: none" class="value component-group">{{ item["group_id"] }}</p>
-                            <p style="display: none" class="value component-id">{{ item["_id"] }}</p>
+                            <p class="value component-group">{{ item["group_id"] }}</p>
+                            <p class="value component-id">{{ item["_id"] }}</p>
                         </div>
                     </div>
                 {% endfor %}
@@ -84,7 +84,7 @@
                         <label for="description">Component href</label>
                         <input class="form-control component-href reset required value" name="href">
                     </div>
-                    <input type="text" style="display: none" class="component-id reset value" name="id">
+                    <input type="text" class="component-id reset value" name="id">
                 </div>
 
                 <div class="modal-footer">

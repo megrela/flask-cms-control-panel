@@ -2,19 +2,17 @@
 
 {% block css %}
     {{ super() }}
-    <link rel="stylesheet" href="/static/css/min/component_groups.css">
-
 {% endblock %}
 
 {% block script %}
     {{ super() }}
-    <script src="/static/js/component-groups.js"> </script>
+    {{ load_script("component-groups") | safe }}
 {% endblock %}
 
 
 {% block content %}
     <div id="component-groups" class="container">
-        <div style="margin-bottom: 20px; padding-left: 15px;">
+        <div class="item-row">
             <strong>you can add new component group from here</strong>
         </div>
 

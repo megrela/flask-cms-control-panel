@@ -26,8 +26,8 @@
                         <p class="card-text">
                             <small class="text-muted component-description value">#description#</small>
                         </p>
-                        <p style="display: none" class="value component-group">#group_id#</p>
-                        <p style="display: none" class="value component-id">#id#</p>
+                        <p class="value component-group">#group_id#</p>
+                        <p class="value component-id">#id#</p>
                     </div>
                 </div>
                 {% for item in dependencies["components"] %}
@@ -41,8 +41,8 @@
                             <p class="card-text">
                                 <small class="text-muted component-description value">{{ item["description"] }}</small>
                             </p>
-                            <p style="display: none" class="value component-group">{{ item["group_id"] }}</p>
-                            <p style="display: none" class="value component-id">{{ item["_id"] }}</p>
+                            <p class="value component-group">{{ item["group_id"] }}</p>
+                            <p class="value component-id">{{ item["_id"] }}</p>
                         </div>
                     </div>
                 {% endfor %}
@@ -93,7 +93,7 @@
                         <label for="description">Component Description</label>
                         <textarea class="form-control component-description reset value" name="description" id="" cols="30" rows="10"></textarea>
                     </div>
-                    <input type="text" style="display: none" class="component-id reset value" name="id">
+                    <input type="text" class="component-id reset value" name="id">
                 </div>
 
                 <div class="modal-footer">

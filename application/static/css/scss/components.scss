@@ -3,17 +3,21 @@
 .card-deck-wrapper {
   .card-deck {
     .card {
-      height: 400px;
-      width: 300px;
-      margin-left: 20px;
-      margin-bottom: 20px;
-      transition: all 0.3s ease 0s;
+      width: $card-width;
+      margin-right: $card-margin-right;
+      margin-bottom: $card-margin-bottom;
+      transition: $transition-all;
       opacity: 1;
       &:hover {
         cursor: pointer;
-        box-shadow: 5px 5px 3px 3px #dddddd;
+        box-shadow: $card-hover-shadow;
       }
-      background-color: #f5f5f5;
+      background-color: $card-bg;
+
+      .component-group,
+      .component-id {
+        display: none;
+      }
     }
   }
 }
@@ -21,40 +25,45 @@
 #image-card-list {
   .card-deck {
     .card {
+      height: $card-height-with-img;
       .image-container {
         text-align: center;
         width: 100%;
         img {
-          height: 200px;
-          max-width: 296px;
+          height: $card-img-height;
+          max-width: $card-img-max-width;
         }
       }
     }
   }
 }
 
-#component-template {
-  display: none;
-}
-
 #text-card-list {
   .card-deck {
     .card {
-      height: 200px;
+      height: $card-height;
     }
   }
 }
 
+
+#component-template {
+  display: none;
+}
+
 #detailed-view {
   .modal-dialog {
-    width: 80%;
+    width: $modal-width;
     margin-left: auto;
     margin-right: auto;
+    .component-id {
+      display: none;
+    }
   }
   .image-container {
     .component-image {
       width: 100%;
-      max-height: 400px;
+      max-height: $modal-img-max-height;
     }
 
     .file-upload {
@@ -64,17 +73,17 @@
     }
 
     .image-actions {
-      padding-left: 1px;
+      padding-left: $img-actions-left-padding;
 
       .change-image {
         cursor: pointer;
         display: inline-block;
-        width: 131px;
+        width: $img-change-width;
       }
 
       .name-and-upload-container {
         display: inline-block;
-        width: calc(100% - 130px);
+        width: $img-name-container-width;
         .image-name {
           cursor: pointer;
           display: inline-block;
@@ -82,7 +91,7 @@
         }
 
         .upload-image {
-          width: 71px;
+          width: $img-upload-width;
           cursor: pointer;
           display: inline-block;
         }
