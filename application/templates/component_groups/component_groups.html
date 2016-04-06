@@ -36,16 +36,17 @@
             <form class="container form-inline component-group-item" id="component-group-template" action="" data-id="#id#" style="display: none;">
                 <div class="form-group">
                     <input type="text"
-                               class="form-control name"
-                               placeholder="Group Name"
-                               value="#name#"
+                           class="form-control name"
+                           placeholder="Group Name"
+                           value="#name#"
                         >
                 </div>
                 <div class="form-group">
                     <input type="text"
-                               class="form-control group-id"
-                               placeholder="Group ID"
-                               value="#group_id#"
+                           class="form-control group-id"
+                           placeholder="Group ID"
+                           value="#group_id#"
+                           disabled
                         >
                 </div>
                 <div class="form-group">
@@ -70,6 +71,7 @@
                                class="form-control group-id"
                                placeholder="Group ID"
                                value="{{ item["group_id"]}}"
+                               disabled
                         >
                     </div>
                     <div class="form-group">

@@ -2,12 +2,12 @@
 
 {% block css %}
     {{ super() }}
-    <link rel="stylesheet" href="/static/css/min/components.css">
+    {{ load_css("components") | safe }}
 {% endblock %}
 
 {% block script %}
     {{ super() }}
-    <script src="/static/js/components/components.base.js"></script>
+    {{ load_script("components/base") | safe }}
 {% endblock %}
 
 {% block content %}

@@ -6,9 +6,10 @@ from router_config import MODULES
 app = Flask(__name__, static_path='/static')
 
 
-def start(name=__name__):
+def start():
     load_config(app)
     register_modules(app)
+    load_template_functions(app)
 
     if app.config["DEBUG"]:
         app.debug = True
@@ -76,3 +77,9 @@ def load_module_dependencies(app, module):
             print('[MODEL] Other(%s): %s' % (models, ex.msg))
         return False
     return True
+
+
+def load_template_functions(app):
+    from .common import template_functions
+    app.jinja_env.globals.update(load_css=template_functions.load_css)
+    app.jinja_env.globals.update(load_script=template_functions.load_script)

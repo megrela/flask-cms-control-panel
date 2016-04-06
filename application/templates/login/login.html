@@ -1,7 +1,7 @@
 {% extends "layouts/base.html" %}
 {% block css %}
     {{ super() }}
-    <link rel="stylesheet" href="/static/css/min/login.css">
+    {{ load_css("login") | safe}}
 {% endblock %}
 
 {% block content %}

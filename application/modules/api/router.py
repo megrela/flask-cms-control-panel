@@ -3,7 +3,7 @@ from flask import request, url_for
 from application.mongo_db import mongo
 
 from . import module
-from .validation import validate
+from . import validation
 
 
 @module.route("/get_group", methods=("POST", ))
@@ -11,7 +11,7 @@ def get_group():
     req = request.get_json()
     client_id = req["client_id"]
     token = req["token"]
-    if not validate(client_id, token):
+    if not validation.auth(client_id, token):
         return json.dumps({}), 400
 
     group_id = req["group_id"]
@@ -38,7 +38,6 @@ def get_group():
             res["links"][component["key"]] = {
                 "name": component["name"],
                 "href": component["href"],
-                "text": component["text"]
             }
         else:
             return json.dumps({})

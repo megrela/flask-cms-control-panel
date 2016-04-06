@@ -1,0 +1,11 @@
+<div id="footer">
+{% block footer %}
+    {{ load_script("footer") | safe }}
+    {{ load_css("footer") | safe }}
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">Place sticky footer content here.</span>
+      </div>
+    </footer>
+{% endblock %}
+</div>

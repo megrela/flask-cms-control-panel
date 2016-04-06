@@ -6,8 +6,7 @@
 
 {% block script %}
     {{ super() }}
-    <script src="/static/js/components/components.text.js"></script>
-
+    {{ load_script("components/texts")|safe }}
 {% endblock %}
 
 {% block content %}

@@ -20,7 +20,8 @@ def setup_header():
 
 def setup():
     dependencies = {
-        "header": setup_header()
+        "header": setup_header(),
+        "footer": {}
     }
     return dependencies
 

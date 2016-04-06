@@ -1,6 +1,5 @@
-from flask import render_template, request, session, redirect, url_for, current_app
+from flask import render_template, request, url_for
 from application.mongo_db import mongo
-import os
 
 import json
 from bson.objectid import ObjectId
@@ -8,8 +7,6 @@ from bson.objectid import ObjectId
 from . import module
 from . import validation
 from .setup import setup
-
-from werkzeug.utils import secure_filename
 
 
 @module.route("/<component_type>/", methods=("GET", "POST"))

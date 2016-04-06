@@ -7,34 +7,30 @@
             <link rel="stylesheet" href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css">
             <link rel="stylesheet" href="/static/bower_components/tether/dist/css/tether.min.css">
             <link rel="stylesheet" href="/static/bower_components/font-awesome/css/font-awesome.css">
-            <link rel="stylesheet" href="/static/css/min/settings.css">
-            <link rel="stylesheet" href="/static/css/min/main.css">
+            {{ load_css("settings") | safe}}
+            {{ load_css("main") | safe}}
         {% endblock %}
         {% block script %}
             <script src="/static/bower_components/jquery/dist/jquery.js"></script>
             <script src="/static/bower_components/tether/dist/js/tether.min.js"></script>
             <script src="/static/bower_components/bootstrap/dist/js/bootstrap.js"></script>
-            <script src="/static/js/main.js" type="text/javascript"></script>
-            <script src="/static/js/app.js" type="text/javascript"></script>
-
+            {{ load_script("main") | safe }}
+            {{ load_script("app") | safe }}
         {% endblock %}
     </head>
     <body>
-        <div id="header">
-            {% block header %}
-                {% if dependencies is defined and "header" in dependencies %}
-                    {% include "layouts/header.html" %}
-                {% endif %}
-            {% endblock %}
-        </div>
+        {% if dependencies is defined and "header" in dependencies %}
+            {% include "layouts/header.html" %}
+        {% endif %}
 
         <div id="content">
             {% block content %}{% endblock %}
         </div>
 
-        <div id="footer">
-            {% block footer %}{% endblock %}
-        </div>
+        {% if dependencies is defined and "header" in dependencies %}
+            {% include "layouts/footer.html" %}
+        {% endif %}
+
     </body>
 </html>
 

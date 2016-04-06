@@ -6,45 +6,47 @@
 
 {% block script %}
     {{ super() }}
-    <script src="/static/js/components/components.image.js"></script>
-    <script src="/static/js/file-upload.js"></script>
+    {{ load_script("file-upload")|safe }}
+    {{ load_script("components/images")|safe }}
 {% endblock %}
 
 {% block content %}
     {{ super() }}
-    <div class="card-deck-wrapper center-block" id="image-card-list">
-        <div class="card-deck clearfix" id="component-list-wrapper">
-            <div id="component-template"
-                 class="card pull-xs-left component" data-toggle="modal" data-target="#detailed-view">
-                <div class="image-container">
-                    <img class="value component-image" src="#image#" >
-                </div>
-                <div class="card-block">
-                    <h4 class="card-title component-name value">#name#</h4>
-                    <p class="card-text component-key value">#key#</p>
-                    <p class="card-text">
-                        <small class="text-muted component-description value">#description#</small>
-                    </p>
-                    <p style="display: none" class="value component-group">#group_id#</p>
-                    <p style="display: none" class="value component-id">#id#</p>
-                </div>
-            </div>
-            {% for item in dependencies["components"] %}
-                <div class="card pull-xs-left component" data-toggle="modal" data-target="#detailed-view">
+    <div class="container">
+        <div class="card-deck-wrapper center-block" id="image-card-list">
+            <div class="card-deck clearfix" id="component-list-wrapper">
+                <div id="component-template"
+                     class="card pull-xs-left component" data-toggle="modal" data-target="#detailed-view">
                     <div class="image-container">
-                        <img class="value component-image" src="{{ url_for("file_upload.get", name=item["image"]) }}" >
+                        <img class="value component-image" src="#image#" >
                     </div>
                     <div class="card-block">
-                        <h4 class="card-title component-name value">{{ item["name"] }}</h4>
-                        <p class="card-text component-key value">{{ item["key"] }}</p>
+                        <h4 class="card-title component-name value">#name#</h4>
+                        <p class="card-text component-key value">#key#</p>
                         <p class="card-text">
-                            <small class="text-muted component-description value">{{ item["description"] }}</small>
+                            <small class="text-muted component-description value">#description#</small>
                         </p>
-                        <p style="display: none" class="value component-group">{{ item["group_id"] }}</p>
-                        <p style="display: none" class="value component-id">{{ item["_id"] }}</p>
+                        <p style="display: none" class="value component-group">#group_id#</p>
+                        <p style="display: none" class="value component-id">#id#</p>
                     </div>
                 </div>
-            {% endfor %}
+                {% for item in dependencies["components"] %}
+                    <div class="card pull-xs-left component" data-toggle="modal" data-target="#detailed-view">
+                        <div class="image-container">
+                            <img class="value component-image" src="{{ url_for("file_upload.get", name=item["image"]) }}" >
+                        </div>
+                        <div class="card-block">
+                            <h4 class="card-title component-name value">{{ item["name"] }}</h4>
+                            <p class="card-text component-key value">{{ item["key"] }}</p>
+                            <p class="card-text">
+                                <small class="text-muted component-description value">{{ item["description"] }}</small>
+                            </p>
+                            <p style="display: none" class="value component-group">{{ item["group_id"] }}</p>
+                            <p style="display: none" class="value component-id">{{ item["_id"] }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 {% endblock %}

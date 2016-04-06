@@ -1,53 +1,45 @@
-{% extends "layouts/base.html" %}
+<div id="header">
+    {% block header %}
+        {{ load_css("header") | safe }}
+        {{ load_script("header") | safe }}
+        <header class="navbar navbar-sticky-top navbar-light" role="banner">
+            <ul class="nav navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for("main.index") }}">
+                        {{ dependencies["header"].app_name  }}
+                    </a>
+                </li>
+                {% for item in dependencies["header"].menu_items %}
+                    {% if item.children|length > 0 %}
+                        <li class="nav-item dropdown{% if item.active %} active{% endif %}">
+                            <a href="{{ item.url }}"
+                               class="dropdown-toggle nav-link"
+                               data-toggle="dropdown"
+                               role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">
+                                {{ item.name }}<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                {% for sub_menu in item.children %}
+                                    <li class="dropdown-item"><a class="nav-link" href="{{ sub_menu.url }}">{{ sub_menu.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li class="nav-item {% if item.active %}active{% endif %}"><a class="nav-link" href="{{ item.url }}">{{ item.name }}</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </header>
 
-{% block css %}
-    {{ super() }}
-    <link rel="stylesheet" href="/static/css/min/header.css">
-{% endblock %}
-
-{% block script %}
-    {{ super() }}
-    <script src="/static/js/header.js"></script>
-{% endblock %}
-
-{% block header %}
-    <header class="navbar navbar-sticky-top navbar-light" role="banner">
-        <ul class="nav navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url_for("main.index") }}">
-                    {{ dependencies["header"].app_name  }}
-                </a>
-            </li>
-            {% for item in dependencies["header"].menu_items %}
-                {% if item.children|length > 0 %}
-                    <li class="nav-item dropdown{% if item.active %} active{% endif %}">
-                        <a href="{{ item.url }}"
-                           class="dropdown-toggle nav-link"
-                           data-toggle="dropdown"
-                           role="button"
-                           aria-haspopup="true"
-                           aria-expanded="false">
-                            {{ item.name }}<span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            {% for sub_menu in item.children %}
-                                <li class="dropdown-item"><a class="nav-link" href="{{ sub_menu.url }}">{{ sub_menu.name }}</a></li>
-                            {% endfor %}
-                        </ul>
-                    </li>
-                {% else %}
-                    <li class="nav-item {% if item.active %}active{% endif %}"><a class="nav-link" href="{{ item.url }}">{{ item.name }}</a></li>
-                {% endif %}
-            {% endfor %}
-        </ul>
-    </header>
-
-    <div class="pageheader">
-        <div class="container">
-            <h1>Component Groups</h1>
-            <p class="lead">
-                displaying the list of component groups you can edit, delete or add new component group
-            </p>
+        <div class="pageheader">
+            <div class="container">
+                <h1>Component Groups</h1>
+                <p class="lead">
+                    displaying the list of component groups you can edit, delete or add new component group
+                </p>
+            </div>
         </div>
-    </div>
-{% endblock %}
+    {% endblock %}
+</div>
