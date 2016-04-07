@@ -1,5 +1,5 @@
 import json
-from flask import request, url_for
+from flask import request, url_for, jsonify
 from application.mongo_db import mongo
 
 from . import module
@@ -40,5 +40,5 @@ def get_group():
                 "href": component["href"],
             }
         else:
-            return json.dumps({})
-    return json.dumps(res)
+            return jsonify({})
+    return jsonify(res)

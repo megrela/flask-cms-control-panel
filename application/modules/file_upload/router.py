@@ -1,9 +1,8 @@
 from . import module
 from flask import request, current_app, url_for, abort
-from flask import send_file
+from flask import send_file, jsonify
 
 import os
-import json
 import datetime
 import uuid
 
@@ -19,7 +18,7 @@ def index():
         file.save(
             os.path.join(current_app.config["UPLOAD_FOLDER"], new_name)
         )
-        return json.dumps({
+        return jsonify({
             "src": url_for("file_upload.get", name=new_name),
             "name": new_name
         })

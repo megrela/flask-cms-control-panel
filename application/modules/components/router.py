@@ -1,7 +1,6 @@
-from flask import render_template, request, url_for
+from flask import render_template, request, url_for, jsonify
 from application.mongo_db import mongo
 
-import json
 from bson.objectid import ObjectId
 
 from . import module
@@ -27,9 +26,9 @@ def filter_components(component_type):
                 "group_id": ObjectId(request.form.get("group_id"))
             })
         )
-        return json.dumps(result)
+        return jsonify(result)
     else:
-        return json.dumps({}), 404
+        return jsonify({}), 404
 
 
 @module.route("/<component_type>/add", methods=("POST",))
@@ -42,15 +41,15 @@ def add(component_type):
         cid = mongo.db.components.insert_one(data).inserted_id
 
         if "image" in data:
-            return json.dumps(
+            return jsonify(
                 {"id": str(cid), "image": url_for("file_upload.get", name=data["image"])},
             )
         else:
-            return json.dumps(
+            return jsonify(
                 {"id": str(cid)}
             )
     else:
-        return json.dumps({}), 404
+        return jsonify({}), 404
 
 
 @module.route("/<component_type>/remove", methods=("POST",))
@@ -59,9 +58,9 @@ def remove(component_type):
         mongo.db.components.remove({
             "_id": ObjectId(request.form.get("id"))
         })
-        return json.dumps({})
+        return jsonify({})
     else:
-        return json.dumps({}), 404
+        return jsonify({}), 404
 
 
 @module.route("/<component_type>/update", methods=("POST",))
@@ -84,7 +83,7 @@ def update(component_type):
         )
         if "image" in data:
             src = u""+url_for("file_upload.get", name=data["image"])
-            return json.dumps({"image": src})
-        return json.dumps({})
+            return jsonify({"image": src})
+        return jsonify({})
     else:
-        return json.dumps({}), 404
+        return jsonify({}), 404

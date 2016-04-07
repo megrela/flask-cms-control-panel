@@ -1,10 +1,9 @@
-from flask import render_template, request, session, redirect, url_for
+from flask import render_template, request, jsonify
 from application.mongo_db import mongo
 
 from . import module
 from .setup import setup
 
-import json
 from bson.objectid import ObjectId
 
 
@@ -20,7 +19,7 @@ def add():
         "name": request.form.get("name"),
         "group_id": request.form.get("group_id")
     })
-    return json.dumps({"id": str(res.inserted_id)})
+    return jsonify({"id": str(res.inserted_id)})
 
 
 @module.route('/remove', methods=("POST",))
@@ -28,7 +27,7 @@ def remove():
     mongo.db.component_groups.remove({
         "_id": ObjectId(request.form.get("id"))
     })
-    return json.dumps({})
+    return jsonify({})
 
 
 @module.route('/update', methods=("POST",))
@@ -47,4 +46,4 @@ def update():
             }
         }
     )
-    return json.dumps({})
+    return jsonify({})
